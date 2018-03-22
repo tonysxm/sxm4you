@@ -1,0 +1,30 @@
+<div id="product" class="page-layout carded" fusePerfectScrollbar>
+  <div class="top-bg mat-accent-bg"></div>
+  <div class="center">
+    <div class="header white-fg" fxLayout="row" fxLayoutAlign="space-between center">
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <button class="mr-0 mr-sm-16" mat-icon-button [routerLink]="'/apps/e-commerce/products'">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+        <h2>{{title}}</h2>
+      </div>
+    </div>
+    <!-- CONTENT CARD -->
+    <div class="content-card mat-white-bg">
+      <!-- CONTENT -->
+        <mat-grid-list cols="5" rowHeight="16:9">
+          <mat-grid-tile *ngFor="let store of stores">
+            <!--<a href="store/{{store.id}}">-->
+              <mat-card class="fullwidth">
+                <mat-card-header></mat-card-header>
+                <mat-card-content>{{store.name}}</mat-card-content>
+              </mat-card>
+            <!--</a>-->
+          </mat-grid-tile>
+        </mat-grid-list>
+      <!-- / CONTENT -->
+    </div>
+    <!-- / CONTENT CARD -->
+  </div>
+  <!-- / CENTER -->
+</div>
