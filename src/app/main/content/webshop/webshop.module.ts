@@ -15,11 +15,16 @@ import {
 } from '@angular/material';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { MatDividerModule, MatListModule, MatSlideToggleModule } from '@angular/material';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 const routes = [
   {
     path     : 'store-list',
     component: StoreListComponent
+  },
+  {
+    path     : 'store/:id',
+    component: StoreComponent
   },
   {
     path     : 'product-list',
@@ -50,6 +55,7 @@ const routes = [
     MatTabsModule,
     MatCardModule,
     MatGridListModule,
+    FlexLayoutModule,
 
     MatDividerModule,
     MatListModule,

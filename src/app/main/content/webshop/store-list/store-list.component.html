@@ -11,17 +11,20 @@
     </div>
     <!-- CONTENT CARD -->
     <div class="content-card mat-white-bg">
-      <!-- CONTENT -->
-        <mat-grid-list cols="5" rowHeight="16:9">
-          <mat-grid-tile *ngFor="let store of stores">
-            <!--<a href="store/{{store.id}}">-->
-              <mat-card class="fullwidth">
-                <mat-card-header></mat-card-header>
-                <mat-card-content>{{store.name}}</mat-card-content>
-              </mat-card>
-            <!--</a>-->
-          </mat-grid-tile>
-        </mat-grid-list>
+      <div style="margin: auto;padding:10px;" fxLayoutGap="5px" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center stretch">
+          <div *ngFor="let store of stores">
+              <a routerLink="/store/{{store.id}}">
+                <mat-card style="margin-bottom: 5px" class="merchantCard fullwidth pointer">
+                  <mat-card-content>
+                    <img class="merchantCardImage"
+                         src="https://lh3.googleusercontent.com/proxy/U5jgdN1yBUjRo5SKaR-EYwA0TaDufefM9NT3Zg_6CIz23JptgcXpGEILx3e-KPrwoEMkGdk8C5fip_rwHgAgAI6PiIHFy2vH2lLG0jDSbxbCitWT=s160-e365-rw">
+                  </mat-card-content>
+                  <mat-card-footer>
+                    {{store.name}}
+                  </mat-card-footer>
+                </mat-card>
+              </a>
+          </div>
       <!-- / CONTENT -->
     </div>
     <!-- / CONTENT CARD -->

@@ -1,10 +1,20 @@
-.grid-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  //background-color: #2196F3;
-}
-.grid-item {
-  //border: 1px solid rgba(0, 0, 0, 0.8);
-  padding: 2px;
+.merchantCardHeader {
   text-align: center;
 }
+
+.merchantCard {
+  //background: #fff;
+  //border: 1px solid #e5e5e5;
+  text-align: center;
+  //width: 215px;
+  //height: 215px;
+  //padding: 16px 16px 16px 16px;
+  //text-decoration: none;
+}
+
+.merchantCardImage {
+  width: 120px;
+  height: 120px;
+}
+
+.pointer {cursor: pointer;}

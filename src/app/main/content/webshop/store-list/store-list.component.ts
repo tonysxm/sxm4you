@@ -8,7 +8,7 @@ import {MatGridTile MatGridList} from '@angular/material';
 })
 export class StoreListComponent implements OnInit {
 
-  title = 'Store';
+  title = 'All Stores';
   stores = [
       {id: 1, name: 'FoodCenter'},
       {id: 2, name: 'VanDorp'},
@@ -22,6 +22,10 @@ export class StoreListComponent implements OnInit {
       {id: 4, name: 'SevenEleven'},
     ]
   constructor() { }
+
+  goToStore(storeId) {
+    console.log('Clicked: ' + storeId);
+  }
 
   ngOnInit() {
   }
