@@ -16,6 +16,8 @@ import {
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { MatDividerModule, MatListModule, MatSlideToggleModule } from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import { ProductCategoryFilterPipe } from './store/product-category-filter.pipe';
+import { ProductFilterPipe } from './store/product-filter.pipe';
 
 const routes = [
   {
@@ -61,12 +63,11 @@ const routes = [
     MatListModule,
     MatSlideToggleModule,
 
-
     TranslateModule,
 
     FuseSharedModule
   ],
-  declarations: [StoreListComponent, StoreComponent, ProductListComponent, ShoppingCartComponent],
+  declarations: [StoreListComponent, StoreComponent, ProductListComponent, ShoppingCartComponent, ProductCategoryFilterPipe, ProductFilterPipe],
 
 })
 export class WebshopModule { }

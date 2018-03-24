@@ -1,3 +1,70 @@
-<p>
-  store works!
-</p>
+<div id="product" class="page-layout carded" fusePerfectScrollbar>
+  <div class="top-bg mat-accent-bg"></div>
+  <div class="center">
+    <div class="header white-fg" fxLayout="row" fxLayoutAlign="space-between center">
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <button class="mr-0 mr-sm-16" mat-icon-button [routerLink]="'/store-list'">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+        <h2>{{title}}</h2>
+      </div>
+    </div>
+    <!-- CONTENT CARD -->
+    <div class="content-card mat-white-bg">
+      <div style="height: 200px">
+      <div class="card fuse-widget-front mat-white-bg mat-elevation-z2">
+        <div style="padding-left: 5px; padding-right: 5px" fxLayoutGap="5px" fxLayout="row" fxLayoutAlign="space-between center">
+
+          <mat-select [(ngModel)]="Category" fxFlexOffset="10px" fxFlex="40" placeholder="Category" multiple>
+            <mat-option>Option 1</mat-option>
+            <mat-option>Option 1</mat-option>
+            <mat-option>Option 1</mat-option>
+            <mat-option>Option 1</mat-option>
+            <mat-option>Option 1</mat-option>
+          </mat-select>
+
+          <mat-form-field fxFlex="50">
+            <input matInput [(ngModel)]="searchText" placeholder="Search">
+          </mat-form-field>
+
+        </div>
+      </div>
+      <div>
+
+
+        <div style="margin: auto;padding:10px;" fxFlexOffset="2px" fxLayoutGap="5px" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="start stretch">
+          <div style="padding-bottom: 5px;" *ngFor="let product of products | productFilter : searchText">
+
+              <mat-card class="product-card">
+                <mat-card-header>
+                  <mat-card-title><h3>{{product.name}}</h3></mat-card-title>
+                  <mat-card-subtitle>Dairy</mat-card-subtitle>
+                </mat-card-header>
+                <a routerLink="/product-detail/{{product.id}}">
+                  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+                </a>
+                <mat-card-content>
+                  <span class="product-card-price">
+                    {{product.price | currency}}
+                    <span class="product-card-old-price">($20,00)</span>
+                  </span>
+                </mat-card-content>
+                <mat-card-actions>
+                  <!--<button class="mat-primary compose-dialog-button mat-raised-button mat-button">View</button>-->
+                  <button class="mat-accent compose-dialog-button mat-raised-button mat-button">Add to Cart</button>
+                </mat-card-actions>
+              </mat-card>
+          </div>
+        </div>
+      </div>
+
+      </div>
+        <!-- / CONTENT -->
+      <!--<div style="margin: auto;padding:10px;" fxLayoutGap="5px" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center stretch">-->
+      <!--</div>-->
+        <!-- / CONTENT -->
+      <!-- / CONTENT CARD -->
+    </div>
+    <!-- / CENTER -->
+  </div>
+</div>
