@@ -5,14 +5,13 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class ProductCategoryFilterPipe implements PipeTransform {
 
-  transform(products: any[], searchText: string): any[] {
+  transform(products: any[], selectedCategories: string[]): any[] {
     if (!products) { return []; }
-    if (!searchText) { return products; }
-
-    searchText = searchText.toLowerCase();
+    if (selectedCategories === undefined) { return products; }
+    if (selectedCategories.length === 0) { return products; }
 
     return products.filter( product => {
-      return product.name.toLowerCase().includes(searchText) || product.description.toLowerCase().includes(searchText);
+      return product.categories.some(r => selectedCategories.indexOf(r) >= 0);
     });
   }
 

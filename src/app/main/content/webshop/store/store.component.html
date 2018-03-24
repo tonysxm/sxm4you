@@ -15,12 +15,8 @@
       <div class="card fuse-widget-front mat-white-bg mat-elevation-z2">
         <div style="padding-left: 5px; padding-right: 5px" fxLayoutGap="5px" fxLayout="row" fxLayoutAlign="space-between center">
 
-          <mat-select [(ngModel)]="Category" fxFlexOffset="10px" fxFlex="40" placeholder="Category" multiple>
-            <mat-option>Option 1</mat-option>
-            <mat-option>Option 1</mat-option>
-            <mat-option>Option 1</mat-option>
-            <mat-option>Option 1</mat-option>
-            <mat-option>Option 1</mat-option>
+          <mat-select [(ngModel)]="selectedCategories" fxFlexOffset="10px" fxFlex="40" placeholder="Category" multiple>
+            <mat-option *ngFor="let category of categories" value="{{category}}" >{{category}}</mat-option>
           </mat-select>
 
           <mat-form-field fxFlex="50">
@@ -33,7 +29,7 @@
 
 
         <div style="margin: auto;padding:10px;" fxFlexOffset="2px" fxLayoutGap="5px" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="start stretch">
-          <div style="padding-bottom: 5px;" *ngFor="let product of products | productFilter : searchText">
+          <div style="padding-bottom: 5px;" *ngFor="let product of products | productFilter : searchText | productCategoryFilter : selectedCategories">
 
               <mat-card class="product-card">
                 <mat-card-header>

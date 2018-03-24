@@ -14,8 +14,8 @@ export class StoreComponent implements OnInit {
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n' +
       '      Donec mattis pretium massa. Aliquam erat volutpat.',
       categories: [
-        { id: 1, name: 'Fruit & Vegetables' },
-        { id: 1, name: 'Whole Grain' },
+        'Fruit & Vegetables',
+        'Whole Grain'
       ]
     },
     { id: 2,
@@ -23,8 +23,8 @@ export class StoreComponent implements OnInit {
       price: 20,
       description: 'Sherwin mattis pretium massa. Aliquam erat volutpat.',
       categories: [
-        { id: 1, name: 'Dairy' },
-        { id: 1, name: 'Whole Grain' },
+       'Dairy',
+        'Whole Grain',
       ]
     },
     { id: 3,
@@ -32,7 +32,7 @@ export class StoreComponent implements OnInit {
       price: 4,
       description: 'Lorem Ispum',
       categories: [
-        { id: 1, name: 'Beverages' },
+        'Beverages',
       ]
     },
     { id: 4,
@@ -40,12 +40,16 @@ export class StoreComponent implements OnInit {
       price: 12,
       description: 'Lorem Ispum',
       categories: [
-        { id: 1, name: 'Beverages' },
-        { id: 1, name: 'zen' },
+        'Beverages',
+        'zen'
       ]
     },
   ];
-  constructor() { }
+  categories = this.products.flatMap(x => x.categories);
+
+  constructor() {
+  }
+
 
   ngOnInit() {
   }
