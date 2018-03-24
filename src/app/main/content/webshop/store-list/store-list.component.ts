@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {MatGridTile MatGridList} from '@angular/material';
 
 @Component({
   selector: 'app-store-list',
