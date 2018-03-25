@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Product} from "../../../../models/product";
+import {ShoppingCartService} from "../../../../services/shopping-cart.service";
+import 'rxjs/add/operator/mergeMap';
 
 @Component({
   selector: 'app-store',
@@ -6,11 +9,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./store.component.scss']
 })
 export class StoreComponent implements OnInit {
+  get products(): any {
+    return this._products;
+  }
+
+  set products(value: any) {
+    this._products = value;
+  }
   title = 'Store';
-  products = [
+  private _products: any = [
     { id: 1,
       name: 'Beans',
-      price: 4.50,
+      activePrice: 4.50,
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n' +
       '      Donec mattis pretium massa. Aliquam erat volutpat.',
       categories: [
@@ -20,16 +30,16 @@ export class StoreComponent implements OnInit {
     },
     { id: 2,
       name: 'Pizza',
-      price: 20,
+      activePrice: 20,
       description: 'Sherwin mattis pretium massa. Aliquam erat volutpat.',
       categories: [
-       'Dairy',
+        'Dairy',
         'Whole Grain',
       ]
     },
     { id: 3,
       name: 'Beer',
-      price: 4,
+      activePrice: 4,
       description: 'Lorem Ispum',
       categories: [
         'Beverages',
@@ -37,7 +47,7 @@ export class StoreComponent implements OnInit {
     },
     { id: 4,
       name: 'Soda',
-      price: 12,
+      activePrice: 12,
       description: 'Lorem Ispum',
       categories: [
         'Beverages',
@@ -45,9 +55,14 @@ export class StoreComponent implements OnInit {
       ]
     },
   ];
-  categories = this.products.flatMap(x => x.categories);
 
-  constructor() {
+  categories = this._products.flatMap(x => x.categories);
+
+  constructor(private shoppingCartService: ShoppingCartService) {
+  }
+
+  addtoCart(product: Product, amount: number) {
+    this.shoppingCartService.addCartItem(product, amount);
   }
 
 

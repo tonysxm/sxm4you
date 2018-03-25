@@ -18,6 +18,7 @@ import { MatDividerModule, MatListModule, MatSlideToggleModule } from '@angular/
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { ProductCategoryFilterPipe } from './store/product-category-filter.pipe';
 import { ProductFilterPipe } from './store/product-filter.pipe';
+import {ShoppingCartService} from "../../../services/shopping-cart.service";
 
 const routes = [
   {
@@ -39,6 +40,7 @@ const routes = [
 ];
 
 @NgModule({
+  providers: [ShoppingCartService],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

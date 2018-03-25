@@ -15,9 +15,11 @@
       <div class="card fuse-widget-front mat-white-bg mat-elevation-z2">
         <div style="padding-left: 5px; padding-right: 5px" fxLayoutGap="5px" fxLayout="row" fxLayoutAlign="space-between center">
 
-          <mat-select [(ngModel)]="selectedCategories" fxFlexOffset="10px" fxFlex="40" placeholder="Category" multiple>
-            <mat-option *ngFor="let category of categories" value="{{category}}" >{{category}}</mat-option>
-          </mat-select>
+          <mat-form-field fxFlex="40">
+            <mat-select [(ngModel)]="selectedCategories" fxFlexOffset="10px" placeholder="Category" multiple>
+              <mat-option *ngFor="let category of categories" value="{{category}}" >{{category}}</mat-option>
+            </mat-select>
+          </mat-form-field>
 
           <mat-form-field fxFlex="50">
             <input matInput [(ngModel)]="searchText" placeholder="Search">
@@ -41,13 +43,13 @@
                 </a>
                 <mat-card-content>
                   <span class="product-card-price">
-                    {{product.price | currency}}
+                    {{product.activePrice | currency}}
                     <span class="product-card-old-price">($20,00)</span>
                   </span>
                 </mat-card-content>
                 <mat-card-actions>
                   <!--<button class="mat-primary compose-dialog-button mat-raised-button mat-button">View</button>-->
-                  <button class="mat-accent compose-dialog-button mat-raised-button mat-button">Add to Cart</button>
+                  <button (click)="addtoCart(product, 1)" class="mat-accent compose-dialog-button mat-raised-button mat-button">Add to Cart</button>
                 </mat-card-actions>
               </mat-card>
           </div>
