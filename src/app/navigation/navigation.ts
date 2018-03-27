@@ -1,5 +1,48 @@
 export const navigation = [
   {
+    'id'       : 'e-commerce',
+    'title'    : 'E-Commerce',
+    'translate': 'NAV.ECOMMERCE',
+    'type'     : 'collapse',
+    'icon'     : 'shopping_cart',
+    'children' : [
+      {
+        'id'   : 'dashboard',
+        'title': 'Dashboard',
+        'type' : 'item',
+        'url'  : '/e-commerce/dashboard'
+      },
+      {
+        'id'        : 'products',
+        'title'     : 'Products',
+        'type'      : 'item',
+        'url'       : '/e-commerce/products',
+        // 'exactMatch': true
+      },
+      {
+        'id'        : 'productDetail',
+        'title'     : 'Product Detail',
+        'type'      : 'item',
+        'url'       : '/e-commerce/products/1/printed-dress',
+        // 'exactMatch': true
+      },
+      {
+        'id'        : 'orders',
+        'title'     : 'Orders',
+        'type'      : 'item',
+        'url'       : '/e-commerce/orders',
+        // 'exactMatch': true
+      },
+      {
+        'id'        : 'orderDetail',
+        'title'     : 'Order Detail',
+        'type'      : 'item',
+        'url'       : '/e-commerce/orders/1',
+        // 'exactMatch': true
+      }
+    ]
+  },
+  {
     'id'      : 'webshop',
     'title'   : 'Webshop',
     'translate': 'NAV.WEBSHOP',

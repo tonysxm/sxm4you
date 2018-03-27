@@ -14,6 +14,9 @@ import { fuseConfig } from './fuse-config';
 import { AppComponent } from './app.component';
 import { FuseMainModule } from './main/main.module';
 import { WebshopModule } from './main/content/webshop/webshop.module';
+import {FuseEcommerceModule} from "./main/content/e-commerce/e-commerce.module";
+import {FuseFakeDbService} from "./fuse-fake-db/fuse-fake-db.service";
+import {InMemoryWebApiModule} from "angular-in-memory-web-api";
 
 const appRoutes: Routes = [
     {
@@ -33,11 +36,17 @@ const appRoutes: Routes = [
         RouterModule.forRoot(appRoutes),
         TranslateModule.forRoot(),
 
+        InMemoryWebApiModule.forRoot(FuseFakeDbService, {
+          delay             : 0,
+          passThruUnknownUrl: true
+        }),
+
         // Fuse Main and Shared modules
         FuseModule.forRoot(fuseConfig),
         FuseSharedModule,
         FuseMainModule,
-        WebshopModule
+        WebshopModule,
+        FuseEcommerceModule
     ],
     bootstrap   : [
         AppComponent
