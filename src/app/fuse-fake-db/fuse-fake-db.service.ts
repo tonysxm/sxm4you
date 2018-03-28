@@ -1,8 +1,8 @@
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 
 import { ECommerceFakeDb } from './e-commerce';
-// import { ProjectDashboardDb } from './dashboard-project';
-// import { AnalyticsDashboardDb } from './dashboard-analytics';
+import { ProjectDashboardDb } from './dashboard-project';
+import { AnalyticsDashboardDb } from './dashboard-analytics';
 // import { CalendarFakeDb } from './calendar';
 // import { AcademyFakeDb } from './academy';
 // import { MailFakeDb } from './mail';
@@ -29,10 +29,10 @@ export class FuseFakeDbService implements InMemoryDbService
           'e-commerce-products' : ECommerceFakeDb.products,
           'e-commerce-orders'   : ECommerceFakeDb.orders,
 
-          // // Dashboards
-          // 'project-dashboard-projects' : ProjectDashboardDb.projects,
-          // 'project-dashboard-widgets'  : ProjectDashboardDb.widgets,
-          // 'analytics-dashboard-widgets': AnalyticsDashboardDb.widgets,
+          // Dashboards
+          'project-dashboard-projects' : ProjectDashboardDb.projects,
+          'project-dashboard-widgets'  : ProjectDashboardDb.widgets,
+          'analytics-dashboard-widgets': AnalyticsDashboardDb.widgets,
           //
           // // Calendar
           // 'calendar': CalendarFakeDb.data,
