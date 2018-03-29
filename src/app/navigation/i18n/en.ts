@@ -12,6 +12,12 @@ export const locale = {
             },
             'SHOPPING-CART': {
               'TITLE': 'Shopping cart'
+            },
+            'ECOMMERCE': {
+              'TITLE': 'E-Commerce'
+            },
+            'BACKEND': {
+              'TITLE': 'Backend'
             }
         }
     }

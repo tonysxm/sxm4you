@@ -1,5 +1,11 @@
 export const navigation = [
   {
+    'id'      : 'backend',
+    'title'   : 'BACKEND',
+    'translate': 'NAV.BACKEND',
+    'type'    : 'group',
+    'children': [
+      {
     'id'       : 'e-commerce',
     'title'    : 'E-Commerce',
     'translate': 'NAV.ECOMMERCE',
@@ -41,6 +47,8 @@ export const navigation = [
         // 'exactMatch': true
       }
     ]
+  }
+    ]
   },
   {
     'id'      : 'webshop',
@@ -56,14 +64,14 @@ export const navigation = [
         'icon' : 'store',
         'url'  : '/store-list'
       },
-      {
-        'id'   : 'products',
-        'title': 'Products',
-        'translate': 'NAV.PRODUCTS.TITLE',
-        'type' : 'item',
-        'icon' : 'shopping',
-        'url'  : '/product-list'
-      }
+      // {
+      //   'id'   : 'products',
+      //   'title': 'Products',
+      //   'translate': 'NAV.PRODUCTS.TITLE',
+      //   'type' : 'item',
+      //   'icon' : 'shopping',
+      //   'url'  : '/product-list'
+      // }
     ]
   },
   {
