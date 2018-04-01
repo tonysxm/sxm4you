@@ -21,32 +21,51 @@ export class ShoppingCartService {
       shoppingCartItem.product = product;
       shoppingCartItem.amount = amount;
 
-      const doesExist = this.shoppingCartItems.map(shoppingCartItem => {
+      const doesExist = this.shoppingCartItems.some(shoppingCartItem => {
           return product === shoppingCartItem.product;
       });
 
-      if (doesExist.toString()) {
-        this.updateShoppingCartItemAmountByOne(shoppingCartItem);
+      if (doesExist) {
+        this.updateShoppingCartItemAmountByOne(shoppingCartItem.product);
       } else {
         this.shoppingCartItems.push(shoppingCartItem);
       }
-      console.log(this.shoppingCartItems);
   }
-  //
-  // updateShoppingCartItemAmount(shoppingCartItem: ShoppingCartItem, amount: number) {
-  //   // const updatedShoppingCartItem: ShoppingCartItem = this.shoppingCartItems.indexOf(shoppingCartItem);
-  //   // updatedShoppingCartItem.amount = amount;
-  //   // this.shoppingCartItems.indexOf(shoppingCartItem) = updatedShoppingCartItem;
-  // }
-  //
-  updateShoppingCartItemAmountByOne(shoppingCartItem: ShoppingCartItem) {
-    console.log('Still needs to be implemented');
 
+  updateShoppingCartItemAmount(product: Product, amount: number) {
+    const indexOfShoppingCartItem = this.shoppingCartItems.findIndex(function(element) {
+      return element.product === product;
+    });
+
+    this.shoppingCartItems[indexOfShoppingCartItem].amount = amount;
   }
-  //
-  // removeCartItem(product: Product) {
-  //   this.shoppingCartItems.splice(this.shoppingCartItems.indexOf(product), 1);
-  //   console.log(this.shoppingCartItems);
-  // }
+
+  updateShoppingCartItemAmountByOne(product: Product) {
+    const indexOfShoppingCartItem = this.shoppingCartItems.findIndex(function(element) {
+      return element.product === product;
+    });
+
+    this.shoppingCartItems[indexOfShoppingCartItem].amount++;
+  }
+
+  reduceCartItemAmountByOne(product: Product) {
+    const indexOfShoppingCartItem = this.shoppingCartItems.findIndex(function(element) {
+      return element.product === product;
+    });
+
+    this.shoppingCartItems[indexOfShoppingCartItem].amount--;
+  }
+
+  removeCartItem(product: Product) {
+    const indexOfShoppingCartItem = this.shoppingCartItems.findIndex(function(element) {
+      return element.product === product;
+    });
+
+    this.shoppingCartItems.splice(indexOfShoppingCartItem, 1);
+  }
+
+  getShoppingCartItems() {
+    return this.shoppingCartItems;
+  }
 
 }
