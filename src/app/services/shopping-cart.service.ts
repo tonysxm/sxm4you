@@ -7,6 +7,7 @@ export class ShoppingCartService {
 
   userId: number;
   shoppingCartItems: ShoppingCartItem[] = new Array();
+  shoppingCartTotals: number[] = new Array();
 
   constructor() { }
 
@@ -66,6 +67,11 @@ export class ShoppingCartService {
 
   getShoppingCartItems() {
     return this.shoppingCartItems;
+  }
+
+  getTotals() {
+    this.shoppingCartTotals = this.shoppingCartItems.map(shoppingCartItem => shoppingCartItem.getSubTotal());
+    return this.shoppingCartTotals;
   }
 
 }

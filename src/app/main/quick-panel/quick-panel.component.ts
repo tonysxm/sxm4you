@@ -1,4 +1,6 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {AfterContentChecked, Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {ShoppingCartService} from "../../services/shopping-cart.service";
+import {ShoppingCartItem} from "../../models/shopping-cart-item";
 
 @Component({
     selector     : 'fuse-quick-panel',
@@ -6,14 +8,17 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
     styleUrls    : ['./quick-panel.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class FuseQuickPanelComponent implements OnInit
+export class FuseQuickPanelComponent implements OnInit, AfterContentChecked
 {
     date: Date;
     settings: any;
     notes = [];
     events = [];
+    shoppingCartItems: ShoppingCartItem[] =  new Array();
+    shoppingCartTotals: number[] = new Array();
+    shoppingCartTotal = 0;
 
-    constructor()
+    constructor(private shoppingCartService: ShoppingCartService)
     {
         this.date = new Date();
         this.settings = {
@@ -25,7 +30,15 @@ export class FuseQuickPanelComponent implements OnInit
 
     ngOnInit()
     {
+      this.shoppingCartItems = this.shoppingCartService.getShoppingCartItems();
+    }
 
+    ngAfterContentChecked() {
+      const reducer = (accumulator, currentValue) => accumulator + currentValue;
+      this.shoppingCartTotals = this.shoppingCartService.getTotals();
+      if(this.shoppingCartTotals.length !== 0) {
+        this.shoppingCartTotal = this.shoppingCartTotals.reduce(reducer);
+      }
     }
 
 }
