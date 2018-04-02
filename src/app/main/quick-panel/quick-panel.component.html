@@ -1,4 +1,4 @@
-<mat-list class="date" cdkFocusRegionStart>
+<mat-list style="text-align: center" class="date" cdkFocusRegionStart>
     <div class="secondary-text mat-display-1 mb-0 p-16">
         <div class="mb-8">
             Shopping Cart
@@ -6,22 +6,34 @@
     </div>
 </mat-list>
 <mat-divider cdkFocusRegionEnd></mat-divider>
-<div *ngIf="shoppingCartTotal !== 0">
+<div *ngIf="shoppingCartItems.length !== 0">
   <mat-list>
-    <mat-list-item *ngFor="let shoppingchartItem of shoppingCartItems;">
-      <h3 matLine>
-        {{shoppingchartItem.product.name}} - {{shoppingchartItem.product.activePrice | currency }} x {{shoppingchartItem.amount}}
-        = {{shoppingchartItem.getSubTotal() | currency}}
-      </h3>
-    </mat-list-item>
+      <table style="width: 98%">
+        <tbody>
+          <tr matLine *ngFor="let shoppingchartItem of shoppingCartItems;">
+            <td><h3 matLine>{{shoppingchartItem.product.name}}</h3></td>
+            <td><h3 matLine>- {{shoppingchartItem.product.activePrice | currency }} x {{shoppingchartItem.amount}}</h3></td>
+            <td><h3 matLine>= {{shoppingchartItem.getSubTotal() | currency}}</h3></td>
+            <td matLine>
+              <button mat-icon-button (click)="removeOneItem(shoppingchartItem)" class="">
+                <mat-icon style="color: rgb(232, 0, 0);">delete_forever</mat-icon>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
   </mat-list>
 
   <mat-divider></mat-divider>
 
   <mat-list>
-    <mat-list-item >
-      Total: {{shoppingCartTotal | currency }}
-    </mat-list-item>
+      <table style="width: 98%">
+        <tbody>
+        <tr>
+          <td>Total: {{shoppingCartTotal | currency }}</td>
+        </tr>
+        </tbody>
+      </table>
   </mat-list>
 
   <mat-divider style="margin-bottom: 20px"></mat-divider>
@@ -31,6 +43,6 @@
   </div>
 </div>
 
-<div style="text-align: center; margin: 10px" *ngIf="shoppingCartTotal == 0">
+<div style="text-align: center; margin: 10px" *ngIf="shoppingCartItems.length == 0">
   <span>Cart is empty</span>
 </div>

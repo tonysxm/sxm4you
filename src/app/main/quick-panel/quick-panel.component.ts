@@ -11,34 +11,28 @@ import {ShoppingCartItem} from "../../models/shopping-cart-item";
 export class FuseQuickPanelComponent implements OnInit, AfterContentChecked
 {
     date: Date;
-    settings: any;
-    notes = [];
-    events = [];
     shoppingCartItems: ShoppingCartItem[] =  new Array();
     shoppingCartTotals: number[] = new Array();
     shoppingCartTotal = 0;
 
-    constructor(private shoppingCartService: ShoppingCartService)
-    {
-        this.date = new Date();
-        this.settings = {
-            notify: true,
-            cloud : false,
-            retro : true
-        };
-    }
+    constructor(private shoppingCartService: ShoppingCartService) {}
 
-    ngOnInit()
-    {
+    ngOnInit() {
       this.shoppingCartItems = this.shoppingCartService.getShoppingCartItems();
     }
 
     ngAfterContentChecked() {
       const reducer = (accumulator, currentValue) => accumulator + currentValue;
       this.shoppingCartTotals = this.shoppingCartService.getTotals();
-      if(this.shoppingCartTotals.length !== 0) {
+      if (this.shoppingCartTotals.length !== 0) {
         this.shoppingCartTotal = this.shoppingCartTotals.reduce(reducer);
       }
     }
 
+    removeOneItem(shoppingChartItem: ShoppingCartItem) {
+        this.shoppingCartService.reduceCartItemAmountByOne(shoppingChartItem.product);
+        if (shoppingChartItem.amount === 0) {
+          this.shoppingCartService.removeCartItem(shoppingChartItem.product);
+        }
+    }
 }
