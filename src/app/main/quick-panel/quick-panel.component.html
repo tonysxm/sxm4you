@@ -6,26 +6,31 @@
     </div>
 </mat-list>
 <mat-divider cdkFocusRegionEnd></mat-divider>
+<div *ngIf="shoppingCartTotal !== 0">
+  <mat-list>
+    <mat-list-item *ngFor="let shoppingchartItem of shoppingCartItems;">
+      <h3 matLine>
+        {{shoppingchartItem.product.name}} - {{shoppingchartItem.product.activePrice | currency }} x {{shoppingchartItem.amount}}
+        = {{shoppingchartItem.getSubTotal() | currency}}
+      </h3>
+    </mat-list-item>
+  </mat-list>
 
-<mat-list>
-  <mat-list-item *ngFor="let shoppingchartItem of shoppingCartItems;">
-    <h3 matLine>
-      {{shoppingchartItem.product.name}} - {{shoppingchartItem.product.activePrice | currency }} x {{shoppingchartItem.amount}}
-      = {{shoppingchartItem.getSubTotal() | currency}}
-    </h3>
-  </mat-list-item>
-</mat-list>
+  <mat-divider></mat-divider>
 
-<mat-divider></mat-divider>
+  <mat-list>
+    <mat-list-item >
+      Total: {{shoppingCartTotal | currency }}
+    </mat-list-item>
+  </mat-list>
 
-<mat-list>
-  <mat-list-item >
-    Total: {{shoppingCartTotal | currency }}
-  </mat-list-item>
-</mat-list>
+  <mat-divider style="margin-bottom: 20px"></mat-divider>
 
-<mat-divider></mat-divider>
+  <div style="text-align: center;">
+    <button (click)="Checkout()" class="mat-accent compose-dialog-button mat-raised-button mat-button">Checkout</button>
+  </div>
+</div>
 
-<div style="text-align: center; margin-top: 10px">
-  <button (click)="Checkout()" class="mat-accent compose-dialog-button mat-raised-button mat-button">Checkout</button>
+<div style="text-align: center; margin: 10px" *ngIf="shoppingCartTotal == 0">
+  <span>Cart is empty</span>
 </div>
