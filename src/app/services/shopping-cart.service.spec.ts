@@ -2,7 +2,6 @@ import { TestBed, inject } from '@angular/core/testing';
 
 import { ShoppingCartService } from './shopping-cart.service';
 import {ShoppingCartItem} from '../models/shopping-cart-item';
-import {Product} from '../models/product';
 
 describe('ShoppingCartService', () => {
   let service: ShoppingCartService;
