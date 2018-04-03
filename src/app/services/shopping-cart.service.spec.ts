@@ -112,13 +112,13 @@ describe('ShoppingCartService', () => {
     expect(shoppingCartItem.product).toEqual(demoProduct1);
     expect(shoppingCartItem.amount).toEqual(amount1);
 
-    service.addCartItem(demoProduct1);
+    service.addCartItem(demoProduct1, amount1);
     let updatedShoppingCartItem = service.getShoppingCartItems()[0];
     expect(updatedShoppingCartItem.product).toEqual(demoProduct1);
     expect(updatedShoppingCartItem.product).toEqual(demoProduct1);
     expect(updatedShoppingCartItem.amount).toEqual(2);
 
-    service.addCartItem(demoProduct1);
+    service.addCartItem(demoProduct1, amount1);
     updatedShoppingCartItem = service.getShoppingCartItems()[0];
     expect(updatedShoppingCartItem.product).toEqual(demoProduct1);
     expect(updatedShoppingCartItem.product).toEqual(demoProduct1);
@@ -137,7 +137,7 @@ describe('ShoppingCartService', () => {
     expect(shoppingCartItem.product).toEqual(demoProduct1);
     expect(shoppingCartItem.amount).toEqual(amount1);
 
-    service.addCartItem(demoProduct1);
+    service.addCartItem(demoProduct1, amount1);
     let updatedShoppingCartItem = service.getShoppingCartItems()[0];
     expect(updatedShoppingCartItem.product).toEqual(demoProduct1);
     expect(updatedShoppingCartItem.product).toEqual(demoProduct1);
