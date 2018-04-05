@@ -20,6 +20,8 @@ import { ProductCategoryFilterPipe } from './store/product-category-filter.pipe'
 import { ProductFilterPipe } from './store/product-filter.pipe';
 import {ShoppingCartService} from "../../../services/shopping-cart.service";
 import {StoreService} from "../../../services/store.service";
+import { CheckoutComponent } from './checkout/checkout.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 const routes = [
   {
@@ -37,6 +39,10 @@ const routes = [
   {
     path     : 'shopping-cart',
     component: ShoppingCartComponent
+  },
+  {
+    path      : 'checkout/:id',
+    component : CheckoutComponent
   }
 ];
 
@@ -44,6 +50,7 @@ const routes = [
   providers: [ShoppingCartService, StoreService],
   imports: [
     CommonModule,
+    BrowserAnimationsModule,
     RouterModule.forChild(routes),
 
     CdkTableModule,
@@ -70,7 +77,7 @@ const routes = [
 
     FuseSharedModule
   ],
-  declarations: [StoreListComponent, StoreComponent, ProductListComponent, ShoppingCartComponent, ProductCategoryFilterPipe, ProductFilterPipe],
+  declarations: [StoreListComponent, StoreComponent, ProductListComponent, ShoppingCartComponent, ProductCategoryFilterPipe, ProductFilterPipe, CheckoutComponent],
 
 })
 export class WebshopModule { }

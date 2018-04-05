@@ -8,14 +8,9 @@ export class ShoppingCartService {
   userId: number;
   shoppingCartItems: ShoppingCartItem[] = new Array();
   shoppingCartTotals: number[] = new Array();
+  shoppingCart = new Map();
 
   constructor() { }
-
-  getSubTotalForItem(shoppingCartItem: ShoppingCartItem) {
-    const product = shoppingCartItem.product;
-    const price =  (product.discountedPrice !== 0 ) ? product.discountedPrice : product.activePrice;
-    return price * shoppingCartItem.amount;
-  }
 
   addCartItem(product: Product, amount: number) {
       const shoppingCartItem = new ShoppingCartItem();

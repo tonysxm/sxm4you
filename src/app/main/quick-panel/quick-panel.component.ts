@@ -1,6 +1,7 @@
 import {AfterContentChecked, Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {ShoppingCartService} from "../../services/shopping-cart.service";
 import {ShoppingCartItem} from "../../models/shopping-cart-item";
+import {Router} from "@angular/router";
 
 @Component({
     selector     : 'fuse-quick-panel',
@@ -15,7 +16,7 @@ export class FuseQuickPanelComponent implements OnInit, AfterContentChecked
     shoppingCartTotals: number[] = new Array();
     shoppingCartTotal = 0;
 
-    constructor(private shoppingCartService: ShoppingCartService) {}
+    constructor(private shoppingCartService: ShoppingCartService, private router: Router) {}
 
     ngOnInit() {
       this.shoppingCartItems = this.shoppingCartService.getShoppingCartItems();
@@ -35,4 +36,9 @@ export class FuseQuickPanelComponent implements OnInit, AfterContentChecked
           this.shoppingCartService.removeCartItem(shoppingChartItem.product);
         }
     }
+
+    checkout(userId: number) {
+      this.router.navigate(['checkout/' + userId]);
+    }
+
 }
