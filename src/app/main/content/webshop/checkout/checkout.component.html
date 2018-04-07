@@ -78,6 +78,8 @@
                 </tbody>
               </table>
             </div>
+
+            <button (click)="checkout(1)" class="mat-accent compose-dialog-button mat-raised-button mat-button">Complete Order</button>
           </mat-tab>
 
           <mat-tab label="Invoice">
@@ -166,11 +168,11 @@
                         <tbody>
                         <tr class="subtotal">
                           <td>SUBTOTAL</td>
-                          <td>{{100 | currency:'USD':'symbol'}}</td>
+                          <td>{{shoppingCartTotal | currency:'USD':'symbol'}}</td>
                         </tr>
                         <tr class="tax">
                           <td>TAX</td>
-                          <td>{{19 | currency:'USD':'symbol'}}</td>
+                          <td>{{0 | currency:'USD':'symbol'}}</td>
                         </tr>
                         <tr class="discount">
                           <td>DISCOUNT</td>

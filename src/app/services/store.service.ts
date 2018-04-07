@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Store} from "../models/store";
 
+
 @Injectable()
 export class StoreService {
 

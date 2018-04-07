@@ -22,6 +22,7 @@ import {ShoppingCartService} from "../../../services/shopping-cart.service";
 import {StoreService} from "../../../services/store.service";
 import { CheckoutComponent } from './checkout/checkout.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {ProductService} from "../../../services/product.service";
 
 const routes = [
   {
@@ -47,7 +48,7 @@ const routes = [
 ];
 
 @NgModule({
-  providers: [ShoppingCartService, StoreService],
+  providers: [ShoppingCartService, StoreService, ProductService],
   imports: [
     CommonModule,
     BrowserAnimationsModule,

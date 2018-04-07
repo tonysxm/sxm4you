@@ -14,37 +14,35 @@
       <div style="height: 200px">
       <div class="card fuse-widget-front mat-white-bg mat-elevation-z2">
         <div style="padding-left: 5px; padding-right: 5px" fxLayoutGap="5px" fxLayout="row" fxLayoutAlign="space-between center">
-
           <mat-form-field fxFlex="40">
             <mat-select [(ngModel)]="selectedCategories" fxFlexOffset="10px" placeholder="Category" multiple>
               <mat-option *ngFor="let category of categories" value="{{category}}" >{{category}}</mat-option>
             </mat-select>
           </mat-form-field>
-
           <mat-form-field fxFlex="50">
             <input matInput [(ngModel)]="searchText" placeholder="Search">
           </mat-form-field>
-
         </div>
       </div>
+
       <div>
-
-
         <div style="margin: auto;padding:10px;" fxFlexOffset="2px" fxLayoutGap="5px" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="start stretch">
           <div style="padding-bottom: 5px;" *ngFor="let product of products | productFilter : searchText | productCategoryFilter : selectedCategories">
-
               <mat-card class="product-card">
                 <mat-card-header>
                   <mat-card-title><h3>{{product.name}}</h3></mat-card-title>
-                  <mat-card-subtitle>Dairy</mat-card-subtitle>
+                  <mat-card-subtitle>
+                    <span *ngFor="let category of product.categories">{{category}} | </span>
+                  </mat-card-subtitle>
                 </mat-card-header>
                 <a routerLink="/product-detail/{{product.id}}">
-                  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+                    <img mat-card-image *ngIf="product.images[0]" [alt]="product.name" [src]="product.images[0].url"/>
+                    <img mat-card-image *ngIf="!product.images[0]" [src]="'assets/images/ecommerce/product-image-placeholder.png'">
                 </a>
                 <mat-card-content>
                   <span class="product-card-price">
                     {{product.activePrice | currency}}
-                    <span class="product-card-old-price">($20,00)</span>
+                    <!--<span class="product-card-old-price">($20,00)</span>-->
                   </span>
                 </mat-card-content>
                 <mat-card-actions>
@@ -56,11 +54,6 @@
       </div>
 
       </div>
-        <!-- / CONTENT -->
-      <!--<div style="margin: auto;padding:10px;" fxLayoutGap="5px" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center stretch">-->
-      <!--</div>-->
-        <!-- / CONTENT -->
-      <!-- / CONTENT CARD -->
     </div>
     <!-- / CENTER -->
   </div>
