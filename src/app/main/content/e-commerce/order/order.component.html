@@ -14,7 +14,7 @@
             <!-- APP TITLE -->
             <div fxLayout="row" fxLayoutAlign="start center">
 
-                <button class="mr-16" mat-icon-button [routerLink]="'/apps/e-commerce/orders'">
+                <button class="mr-16" mat-icon-button [routerLink]="'/e-commerce/orders'">
                     <mat-icon>arrow_back</mat-icon>
                 </button>
 
@@ -270,7 +270,7 @@
                                 <tbody>
                                     <tr class="product-row"
                                         *ngFor="let product of order.products"
-                                        [routerLink]="'/apps/e-commerce/products/'+product.id+'/'+product.handle">
+                                        [routerLink]="'/e-commerce/products/'+product.id+'/'+product.handle">
                                         <td class="w-64">
                                             {{product.id}}
                                         </td>

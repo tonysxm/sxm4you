@@ -77,6 +77,7 @@ export class FuseEcommerceProductComponent implements OnInit, OnDestroy
             categories      : [this.product.categories],
             tags            : [this.product.tags],
             images          : [this.product.images],
+            activePrice     : [this.product.priceTaxExcl],
             priceTaxExcl    : [this.product.priceTaxExcl],
             priceTaxIncl    : [this.product.priceTaxIncl],
             taxRate         : [this.product.taxRate],
