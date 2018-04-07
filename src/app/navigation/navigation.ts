@@ -26,24 +26,10 @@ export const navigation = [
         // 'exactMatch': true
       },
       {
-        'id'        : 'productDetail',
-        'title'     : 'Product Detail',
-        'type'      : 'item',
-        'url'       : '/e-commerce/products/1/printed-dress',
-        // 'exactMatch': true
-      },
-      {
         'id'        : 'orders',
         'title'     : 'Orders',
         'type'      : 'item',
         'url'       : '/e-commerce/orders',
-        // 'exactMatch': true
-      },
-      {
-        'id'        : 'orderDetail',
-        'title'     : 'Order Detail',
-        'type'      : 'item',
-        'url'       : '/e-commerce/orders/1',
         // 'exactMatch': true
       }
     ]
@@ -64,22 +50,6 @@ export const navigation = [
         'icon' : 'store',
         'url'  : '/store-list'
       },
-      // {
-      //   'id'   : 'products',
-      //   'title': 'Products',
-      //   'translate': 'NAV.PRODUCTS.TITLE',
-      //   'type' : 'item',
-      //   'icon' : 'shopping',
-      //   'url'  : '/product-list'
-      // }
-    ]
-  },
-  {
-    'id'      : 'Personal',
-    'title'   : 'personal',
-    'translate': 'NAV.Personal',
-    'type'    : 'group',
-    'children': [
       {
         'id'   : 'shopping-cart',
         'title': 'Shopping Cart',
@@ -88,6 +58,14 @@ export const navigation = [
         'icon' : 'shopping_cart',
         'url'  : '/shopping-cart'
       }
+      // {
+      //   'id'   : 'products',
+      //   'title': 'Products',
+      //   'translate': 'NAV.PRODUCTS.TITLE',
+      //   'type' : 'item',
+      //   'icon' : 'shopping',
+      //   'url'  : '/product-list'
+      // }
     ]
   }
 ];
