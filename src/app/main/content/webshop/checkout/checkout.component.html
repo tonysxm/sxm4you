@@ -53,6 +53,7 @@
                   <th>Name</th>
                   <th>Price</th>
                   <th>Quantity</th>
+                  <th>Total</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -63,16 +64,20 @@
                     {{shoppingCartItem.product.id}}
                   </td>
                   <td class="w-80">
-                    <img class="product-image" [src]="">
+                    <img class="product-image" *ngIf="shoppingCartItem.product.images[0]" [alt]="shoppingCartItem.product.name" [src]="shoppingCartItem.product.images[0].url"/>
+                    <img class="product-image" *ngIf="!shoppingCartItem.product.images[0]" [src]="'assets/images/ecommerce/product-image-placeholder.png'">
                   </td>
                   <td>
                     {{shoppingCartItem.product.name}}
                   </td>
                   <td>
-                    {{shoppingCartItem.product.activePrice}}
+                    {{shoppingCartItem.product.activePrice | currency }}
                   </td>
                   <td>
                     {{shoppingCartItem.amount}}
+                  </td>
+                  <td>
+                    {{shoppingCartItem.product.activePrice * shoppingCartItem.amount | currency}}
                   </td>
                 </tr>
                 </tbody>
