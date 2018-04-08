@@ -22,7 +22,6 @@ export class StoreComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.products);
   }
 
 }
