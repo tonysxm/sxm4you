@@ -6,19 +6,28 @@
     </div>
 </mat-list>
 <mat-divider cdkFocusRegionEnd></mat-divider>
+
 <div *ngIf="shoppingCartItems.length !== 0">
   <mat-list>
       <table style="width: 98%">
         <tbody>
           <tr matLine *ngFor="let shoppingchartItem of shoppingCartItems;">
-            <td><h3 matLine>{{shoppingchartItem.product.name}}</h3></td>
-            <td><h3 matLine>- {{shoppingchartItem.product.activePrice | currency }} x {{shoppingchartItem.amount}}</h3></td>
-            <td><h3 matLine>= {{shoppingchartItem.getSubTotal() | currency}}</h3></td>
-            <td matLine>
-              <button mat-icon-button (click)="removeOneItem(shoppingchartItem)" class="">
-                <mat-icon style="color: rgb(232, 0, 0);">delete_forever</mat-icon>
-              </button>
-            </td>
+            <div *ngIf="shoppingchartItem.amount != 0">
+              <td fxFlex="20">
+                <h3 matLine>{{shoppingchartItem.product.name}}</h3>
+              </td>
+              <td>
+                <h3 matLine>- {{shoppingchartItem.product.activePrice | currency }} x
+                  <input style="width: 40px" matInput type="number" [(ngModel)]="shoppingchartItem.amount" value="{{shoppingchartItem.amount}}">
+                </h3>
+              </td>
+              <td fxFlex="20"><h3 matLine>= {{shoppingchartItem.getSubTotal() | currency}}</h3></td>
+              <td style="padding-top: 15px;" fxFlex="10" matLine>
+                <button mat-icon-button (click)="removeOneItem(shoppingchartItem)" class="">
+                  <mat-icon style="color: rgb(232, 0, 0);">delete_forever</mat-icon>
+                </button>
+              </td>
+            </div>
           </tr>
         </tbody>
       </table>

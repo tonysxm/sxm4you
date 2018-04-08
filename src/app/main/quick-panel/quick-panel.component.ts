@@ -32,7 +32,7 @@ export class FuseQuickPanelComponent implements OnInit, AfterContentChecked
 
     removeOneItem(shoppingChartItem: ShoppingCartItem) {
         this.shoppingCartService.reduceCartItemAmountByOne(shoppingChartItem.product);
-        if (shoppingChartItem.amount === 0) {
+        if (shoppingChartItem.amount <= 0) {
           this.shoppingCartService.removeCartItem(shoppingChartItem.product);
         }
     }

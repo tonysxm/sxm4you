@@ -1,12 +1,44 @@
 fuse-quick-panel {
     display: flex;
-    width: 280px;
-    min-width: 280px;
-    max-width: 280px;
+    width: 350px;
+    min-width: 350px;
+    max-width: 350px;
     z-index: 99;
     flex-direction: column;
 
     .mat-slide-toggle-content {
         flex: 1;
     }
+}
+
+.small-mat-card {
+  transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
+  display: block;
+  position: relative;
+  padding: 1px;
+  border-radius: 2px;
+}
+
+
+mat-form-field-infix {
+  padding: 0 0;
+  border-top: 0em solid transparent;
+}
+
+.mat-form-field-infix {
+  display: block;
+  position: relative;
+  flex: auto;
+  min-width: 0;
+  width: 40px;
+}
+
+.mat-form-field-flex {
+  display: inline-flex;
+  align-items: baseline;
+  width: 40px;
+}
+
+.mat-input-wrapper .mat-form-field-wrapper {
+  width: 40px;
 }
