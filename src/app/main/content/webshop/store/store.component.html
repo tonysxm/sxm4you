@@ -31,13 +31,13 @@
               <mat-card class="product-card">
                 <mat-card-header>
                   <mat-card-title><h3>{{product.name}}</h3></mat-card-title>
-                  <mat-card-subtitle>
-                    <span *ngFor="let category of product.categories">{{category}} | </span>
-                  </mat-card-subtitle>
+                  <!--<mat-card-subtitle>-->
+                    <!--<span *ngFor="let category of product.categories">{{category}} | </span>-->
+                  <!--</mat-card-subtitle>-->
                 </mat-card-header>
                 <a routerLink="/product-detail/{{product.id}}">
-                    <img mat-card-image *ngIf="product.images[0]" [alt]="product.name" [src]="product.images[0].url"/>
-                    <img mat-card-image *ngIf="!product.images[0]" [src]="'assets/images/ecommerce/product-image-placeholder.png'">
+                    <img mat-card-image *ngIf="product.thumbnail" [alt]="product.name" [src]="product.thumbnail"/>
+                    <img mat-card-image *ngIf="!product.thumbnail" [src]="'assets/images/ecommerce/product-image-placeholder.png'">
                 </a>
                 <mat-card-content>
                   <span class="product-card-price">

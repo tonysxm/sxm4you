@@ -11,7 +11,7 @@ export class ProductCategoryFilterPipe implements PipeTransform {
     if (selectedCategories.length === 0) { return products; }
 
     return products.filter( product => {
-      return product.categories.some(r => selectedCategories.indexOf(r) >= 0);
+      return JSON.parse(product.categories).some(r => selectedCategories.indexOf(r) >= 0);
     });
   }
 

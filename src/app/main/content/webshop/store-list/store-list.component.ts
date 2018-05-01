@@ -13,10 +13,14 @@ export class StoreListComponent implements OnInit {
   stores: Store[];
 
   constructor(private storeService: StoreService) {
-    this.stores = storeService.getAllStores();
   }
 
   ngOnInit() {
+    this.storeService.getAllStores().subscribe(data => {
+      // @ts-ignore
+      this.stores = data.companies;
+      }
+    );
   }
 
 }

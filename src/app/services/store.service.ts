@@ -1,11 +1,16 @@
 import { Injectable } from '@angular/core';
 import {Store} from "../models/store";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {Observable} from 'rxjs/Observable';
 
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable()
 export class StoreService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   stores: Store[] = [
     {id: 1, name: 'FoodCenter'},
@@ -17,7 +22,7 @@ export class StoreService {
   ];
 
   getAllStores() {
-    return this.stores;
+    return this.http.get('http://localhost:18080/company/list');
   }
 
   updateStore(store: Store) {}

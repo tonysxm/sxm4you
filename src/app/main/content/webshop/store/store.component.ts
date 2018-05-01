@@ -10,19 +10,25 @@ import {ProductService} from "../../../../services/product.service";
   styleUrls: ['./store.component.scss']
 })
 export class StoreComponent implements OnInit {
+  title = 'Store';
+  products: any;
+  categories = new Set();
 
   constructor(private shoppingCartService: ShoppingCartService, private productService: ProductService) {}
 
-  title = 'Store';
-  public products = this.productService.getAllProduct();
-  categories = new Set(this.products.flatMap(x => x.categories));
+  // public products = this.productService.getAllProduct();
 
   addtoCart(product: Product, amount: number) {
     this.shoppingCartService.addCartItem(product, amount);
   }
 
   ngOnInit() {
-    console.log(this.products);
+    this.productService.getProductsFromCompany(1).subscribe( data => {
+      // @ts-ignore
+      this.products = data.products as Product;
+      console.log(this.products);
+      this.categories = new Set(this.products.flatMap(x => JSON.parse(x.categories)));
+    });
   }
 
 }

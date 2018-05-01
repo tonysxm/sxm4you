@@ -1,19 +1,25 @@
 import { Injectable } from '@angular/core';
 import {ECommerceFakeDb} from "../fuse-fake-db/e-commerce";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {Observable} from 'rxjs/Observable';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable()
 export class ProductService {
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   getAllProduct() {
-    return ECommerceFakeDb.products;
+    // return ECommerceFakeDb.products;
+    const companyId = 1;
+    return this.http.get(`http://localhost:18080/company/${companyId}/products`);
   }
 
   getProductsFromCompany(companyId) {
-    ECommerceFakeDb.products.filter( product => {
-      return true;//product.active === true;
-    });
+    return this.http.get(`http://localhost:18080/company/${companyId}/products`);
   }
 
 }

@@ -13,15 +13,14 @@
         <tbody>
           <tr matLine *ngFor="let shoppingchartItem of shoppingCartItems;">
             <div *ngIf="shoppingchartItem.amount != 0">
-              <td fxFlex="20">
+              <td fxFlex="100">
                 <h3 matLine>{{shoppingchartItem.product.name}}</h3>
-              </td>
-              <td>
-                <h3 matLine>- {{shoppingchartItem.product.activePrice | currency }} x
+                <h3 matLine>
+                  {{shoppingchartItem.product.activePrice | currency }} x
                   <input style="width: 40px" matInput type="number" [(ngModel)]="shoppingchartItem.amount" value="{{shoppingchartItem.amount}}">
+                  = {{shoppingchartItem.getSubTotal() | currency}}
                 </h3>
               </td>
-              <td fxFlex="20"><h3 matLine>= {{shoppingchartItem.getSubTotal() | currency}}</h3></td>
               <td style="padding-top: 15px;" fxFlex="10" matLine>
                 <button mat-icon-button (click)="removeOneItem(shoppingchartItem)" class="">
                   <mat-icon style="color: rgb(232, 0, 0);">delete_forever</mat-icon>

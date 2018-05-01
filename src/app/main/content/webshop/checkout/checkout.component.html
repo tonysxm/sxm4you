@@ -64,8 +64,8 @@
                     {{shoppingCartItem.product.id}}
                   </td>
                   <td class="w-80">
-                    <img class="product-image" *ngIf="shoppingCartItem.product.images[0]" [alt]="shoppingCartItem.product.name" [src]="shoppingCartItem.product.images[0].url"/>
-                    <img class="product-image" *ngIf="!shoppingCartItem.product.images[0]" [src]="'assets/images/ecommerce/product-image-placeholder.png'">
+                    <img class="product-image" *ngIf="shoppingCartItem.product.thumbnail" [alt]="shoppingCartItem.product.name" [src]="shoppingCartItem.product.thumbnail"/>
+                    <img class="product-image" *ngIf="!shoppingCartItem.product.thumbnail" [src]="'assets/images/ecommerce/product-image-placeholder.png'">
                   </td>
                   <td>
                     {{shoppingCartItem.product.name}}
