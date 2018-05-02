@@ -3,9 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { CdkTableModule } from '@angular/cdk/table';
 
 import {
-  MatButtonModule, MatButtonToggle, MatChipsModule, MatFormFieldModule, MatIconModule, MatInputModule,
+  MatButtonModule, MatChipsModule, MatFormFieldModule, MatIconModule, MatInputModule,
   MatPaginatorModule,
-  MatRippleModule, MatSelectModule, MatSlideToggleModule, MatSnackBar, MatSortModule, MatTableModule, MatTabsModule
+  MatRippleModule, MatSelectModule, MatSlideToggleModule, MatSnackBar, MatSnackBarModule, MatSortModule, MatTableModule,
+  MatTabsModule
 } from '@angular/material';
 
 import { NgxChartsModule } from '@swimlane/ngx-charts';
@@ -96,6 +97,7 @@ const routes: Routes = [
         MatTableModule,
         MatTabsModule,
         MatSlideToggleModule,
+        MatSnackBarModule,
 
         NgxChartsModule,
         AgmCoreModule.forRoot({

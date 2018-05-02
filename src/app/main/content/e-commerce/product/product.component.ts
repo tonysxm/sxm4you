@@ -100,6 +100,7 @@ export class FuseEcommerceProductComponent implements OnInit, OnDestroy
             .then(() => {
 
                 // Trigger the subscription with new data
+                data.categories =  JSON.stringify(data.categories);
                 this.productService.onProductChanged.next(data);
 
                 // Show the success message
@@ -118,7 +119,8 @@ export class FuseEcommerceProductComponent implements OnInit, OnDestroy
             .then(() => {
 
                 // Trigger the subscription with new data
-                this.productService.onProductChanged.next(data);
+              data.categories =  JSON.stringify(data.categories);
+              this.productService.onProductChanged.next(data);
 
                 // Show the success message
                 this.snackBar.open('Product added', 'OK', {

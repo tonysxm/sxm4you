@@ -36,7 +36,7 @@ export class Product
         this.name = product.name || '';
         this.handle = product.handle || FuseUtils.handleize(this.name);
         this.description = product.description || '';
-        this.categories = (product.categories) ? JSON.parse(product.categories) : product.categories|| [];
+        this.categories = (product.categories) ? JSON.parse(product.categories) : product.categories || new Array<string>();
         this.tags = product.tags || [];
         this.images = product.images || [];
         this.price = product.price || 0;
