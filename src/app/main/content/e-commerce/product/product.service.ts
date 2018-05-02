@@ -56,8 +56,6 @@ export class EcommerceProductService implements Resolve<any>
                 this.http.get('http://localhost:18080/product/' + this.routeParams.id)
                     .subscribe((response: any) => {
                         this.product = response.product[0] as Product;
-                        console.log(this.product.categories)
-                        this.product.categories = JSON.parse(this.product.categories);
                         this.onProductChanged.next(this.product);
                         resolve(response);
                     }, reject);

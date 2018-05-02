@@ -36,7 +36,7 @@ export class Product
         this.name = product.name || '';
         this.handle = product.handle || FuseUtils.handleize(this.name);
         this.description = product.description || '';
-        this.categories = product.categories || [];
+        this.categories = (product.categories) ? JSON.parse(product.categories) : product.categories|| [];
         this.tags = product.tags || [];
         this.images = product.images || [];
         this.price = product.price || 0;
@@ -49,7 +49,7 @@ export class Product
         this.depth = product.depth || 0;
         this.weight = product.weight || 0;
         this.extraShippingFee = product.extraShippingFee || 0;
-        this.active = product.active || true;
+        this.active = product.active || 0;
         this.thumbnail = product.thumbnail || '';
     }
 

@@ -24,6 +24,7 @@ import { FuseEcommerceOrdersComponent } from './orders/orders.component';
 import { EcommerceOrdersService } from './orders/orders.service';
 import { FuseEcommerceOrderComponent } from './order/order.component';
 import { EcommerceOrderService } from './order/order.service';
+import { FormatJsonArrayPipe } from './products/format-json-array.pipe';
 
 const routes: Routes = [
     {
@@ -76,7 +77,8 @@ const routes: Routes = [
         FuseEcommerceProductsComponent,
         FuseEcommerceProductComponent,
         FuseEcommerceOrdersComponent,
-        FuseEcommerceOrderComponent
+        FuseEcommerceOrderComponent,
+        FormatJsonArrayPipe
     ],
     imports     : [
         RouterModule.forChild(routes),
