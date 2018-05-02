@@ -4,6 +4,7 @@ import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/r
 
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import {Product} from "./product.model";
 
 @Injectable()
 export class EcommerceProductService implements Resolve<any>
@@ -52,9 +53,11 @@ export class EcommerceProductService implements Resolve<any>
             }
             else
             {
-                this.http.get('api/e-commerce-products/' + this.routeParams.id)
+                this.http.get('http://localhost:18080/product/' + this.routeParams.id)
                     .subscribe((response: any) => {
-                        this.product = response;
+                        this.product = response.product[0] as Product;
+                        console.log(this.product.categories)
+                        this.product.categories = JSON.parse(this.product.categories);
                         this.onProductChanged.next(this.product);
                         resolve(response);
                     }, reject);
@@ -65,7 +68,7 @@ export class EcommerceProductService implements Resolve<any>
     saveProduct(product)
     {
         return new Promise((resolve, reject) => {
-            this.http.post('api/e-commerce-products/' + product.id, product)
+            this.http.put('http://localhost:18080/product/' + product.id, product)
                 .subscribe((response: any) => {
                     resolve(response);
                 }, reject);
@@ -75,7 +78,7 @@ export class EcommerceProductService implements Resolve<any>
     addProduct(product)
     {
         return new Promise((resolve, reject) => {
-            this.http.post('api/e-commerce-products/', product)
+            this.http.post('http://localhost:18080/product/', product)
                 .subscribe((response: any) => {
                     resolve(response);
                 }, reject);

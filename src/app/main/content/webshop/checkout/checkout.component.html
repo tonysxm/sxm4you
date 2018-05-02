@@ -71,13 +71,13 @@
                     {{shoppingCartItem.product.name}}
                   </td>
                   <td>
-                    {{shoppingCartItem.product.activePrice | currency }}
+                    {{shoppingCartItem.product.price | currency }}
                   </td>
                   <td>
                     {{shoppingCartItem.amount}}
                   </td>
                   <td>
-                    {{shoppingCartItem.product.activePrice * shoppingCartItem.amount | currency}}
+                    {{shoppingCartItem.product.price * shoppingCartItem.amount | currency}}
                   </td>
                 </tr>
                 </tbody>
@@ -167,7 +167,7 @@
                             </div>
                           </td>
                           <td class="text-right">
-                            {{shoppingCartItem.product.activePrice | currency:'USD':'symbol'}}
+                            {{shoppingCartItem.product.price | currency:'USD':'symbol'}}
                           </td>
                           <td class="text-right">
                             {{shoppingCartItem.amount}}

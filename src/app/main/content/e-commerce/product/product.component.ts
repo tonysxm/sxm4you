@@ -77,10 +77,8 @@ export class FuseEcommerceProductComponent implements OnInit, OnDestroy
             categories      : [this.product.categories],
             tags            : [this.product.tags],
             images          : [this.product.images],
-            activePrice     : [this.product.priceTaxExcl],
-            priceTaxExcl    : [this.product.priceTaxExcl],
-            priceTaxIncl    : [this.product.priceTaxIncl],
-            taxRate         : [this.product.taxRate],
+            price           : [this.product.price],
+            tax_rate        : [this.product.tax_rate],
             comparedPrice   : [this.product.comparedPrice],
             quantity        : [this.product.quantity],
             sku             : [this.product.sku],
@@ -89,7 +87,8 @@ export class FuseEcommerceProductComponent implements OnInit, OnDestroy
             depth           : [this.product.depth],
             weight          : [this.product.weight],
             extraShippingFee: [this.product.extraShippingFee],
-            active          : [this.product.active]
+            active          : [this.product.active],
+            thumbnail       : [this.product.thumbnail]
         });
     }
 

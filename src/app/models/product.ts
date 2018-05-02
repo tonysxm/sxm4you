@@ -1,7 +1,7 @@
 export interface Product {
   id?: number;
   name: string;
-  activePrice: number;
+  price: number;
   discountedPrice?: number;
   description: string;
   categories: any[];

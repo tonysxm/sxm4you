@@ -16,9 +16,8 @@ export class Product
         url: string,
         type: string
     }[];
-    priceTaxExcl: number;
-    priceTaxIncl: number;
-    taxRate: number;
+    price: number;
+    tax_rate: number;
     comparedPrice: number;
     quantity: number;
     sku: string;
@@ -28,6 +27,7 @@ export class Product
     weight: string;
     extraShippingFee: number;
     active: boolean;
+    thumbnail: string;
 
     constructor(product?)
     {
@@ -39,9 +39,8 @@ export class Product
         this.categories = product.categories || [];
         this.tags = product.tags || [];
         this.images = product.images || [];
-        this.priceTaxExcl = product.priceTaxExcl || 0;
-        this.priceTaxIncl = product.priceTaxIncl || 0;
-        this.taxRate = product.taxRate || 0;
+        this.price = product.price || 0;
+        this.tax_rate = product.tax_rate || 0;
         this.comparedPrice = product.comparedPrice || 0;
         this.quantity = product.quantity || 0;
         this.sku = product.sku || 0;
@@ -51,6 +50,7 @@ export class Product
         this.weight = product.weight || 0;
         this.extraShippingFee = product.extraShippingFee || 0;
         this.active = product.active || true;
+        this.thumbnail = product.thumbnail || '';
     }
 
     addCategory(event: MatChipInputEvent): void
@@ -108,4 +108,5 @@ export class Product
             this.tags.splice(index, 1);
         }
     }
+
 }

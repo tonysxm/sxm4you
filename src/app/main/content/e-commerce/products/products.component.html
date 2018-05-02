@@ -63,9 +63,9 @@
                     <mat-header-cell *cdkHeaderCellDef></mat-header-cell>
                     <mat-cell *cdkCellDef="let product">
                         <img class="product-image"
-                             *ngIf="product.images[0]" [alt]="product.name"
-                             [src]="product.images[0].url"/>
-                        <img *ngIf="!product.images[0]" [src]="'assets/images/ecommerce/product-image-placeholder.png'">
+                             *ngIf="product.thumbnail" [alt]="product.name"
+                             [src]="product.thumbnail"/>
+                        <img *ngIf="!product.thumbnail" [src]="'assets/images/ecommerce/product-image-placeholder.png'">
                     </mat-cell>
                 </ng-container>
 
@@ -82,7 +82,7 @@
                     <mat-header-cell *cdkHeaderCellDef fxHide mat-sort-header fxShow.gt-md>Category</mat-header-cell>
                     <mat-cell *cdkCellDef="let product" fxHide fxShow.gt-md>
                         <p class="category text-truncate">
-                            {{product.categories[0]}}
+                            {{product.categories}}
                         </p>
                     </mat-cell>
                 </ng-container>
@@ -92,7 +92,7 @@
                     <mat-header-cell *cdkHeaderCellDef mat-sort-header fxHide fxShow.gt-xs>Price</mat-header-cell>
                     <mat-cell *cdkCellDef="let product" fxHide fxShow.gt-xs>
                         <p class="price text-truncate">
-                            {{product.priceTaxIncl | currency:'USD':'symbol'}}
+                            {{product.price | currency:'USD':'symbol'}}
                         </p>
                     </mat-cell>
                 </ng-container>
@@ -126,7 +126,7 @@
                 <mat-row *cdkRowDef="let product; columns: displayedColumns;"
                          class="product"
                          matRipple
-                         [routerLink]="'/e-commerce/products/'+product.id+'/'+product.handle">
+                         [routerLink]="'/e-commerce/products/'+product.id">
                 </mat-row>
 
             </mat-table>

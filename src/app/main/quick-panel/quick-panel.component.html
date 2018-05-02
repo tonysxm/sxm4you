@@ -16,7 +16,7 @@
               <td fxFlex="100">
                 <h3 matLine>{{shoppingchartItem.product.name}}</h3>
                 <h3 matLine>
-                  {{shoppingchartItem.product.activePrice | currency }} x
+                  {{shoppingchartItem.product.price | currency }} x
                   <input style="width: 40px" matInput type="number" [(ngModel)]="shoppingchartItem.amount" value="{{shoppingchartItem.amount}}">
                   = {{shoppingchartItem.getSubTotal() | currency}}
                 </h3>

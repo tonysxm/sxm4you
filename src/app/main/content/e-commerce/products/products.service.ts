@@ -3,6 +3,7 @@ import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/r
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import {Product} from "../product/product.model";
 
 @Injectable()
 export class EcommerceProductsService implements Resolve<any>
@@ -38,15 +39,29 @@ export class EcommerceProductsService implements Resolve<any>
         });
     }
 
-    getProducts(): Promise<any>
-    {
-        return new Promise((resolve, reject) => {
-            this.http.get('api/e-commerce-products')
-                .subscribe((response: any) => {
-                    this.products = response;
-                    this.onProductsChanged.next(this.products);
-                    resolve(response);
-                }, reject);
-        });
-    }
+    // getProducts(): Promise<any>
+    // {
+    //     return new Promise((resolve, reject) => {
+    //         this.http.get('api/e-commerce-products')
+    //             .subscribe((response: any) => {
+    //                 this.products = response;
+    //                 this.onProductsChanged.next(this.products);
+    //                 resolve(response);
+    //             }, reject);
+    //     });
+    // }
+
+  getProducts(): Promise<any>
+  {
+    const companyId = 1;
+    return new Promise((resolve, reject) => {
+      this.http.get(`http://localhost:18080/company/${companyId}/products`)
+        .subscribe((response: any) => {
+          this.products = response.products as Product;
+          console.log(this.products);
+          this.onProductsChanged.next(this.products);
+          resolve(response);
+        }, reject);
+    });
+  }
 }

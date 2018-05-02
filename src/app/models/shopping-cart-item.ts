@@ -6,6 +6,6 @@ export class ShoppingCartItem {
   amount: number;
 
   getSubTotal() {
-    return this.product.activePrice * this.amount;
+    return this.product.price * this.amount;
   }
 }

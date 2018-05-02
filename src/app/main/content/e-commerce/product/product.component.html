@@ -120,6 +120,14 @@
                                            placeholder="Add tag..."
                                            [matChipInputFor]="tagList"/>
                                 </mat-form-field>
+
+                              <mat-form-field class="w-100-p">
+                                <input matInput
+                                       name="active"
+                                       formControlName="active"
+                                       placeholder="Active"
+                                       required>
+                              </mat-form-field>
                             </div>
                         </mat-tab>
 
@@ -147,35 +155,18 @@
 
                                 <mat-form-field class="w-100-p">
                                     <input matInput
-                                           name="priceTaxExcl"
-                                           formControlName="priceTaxExcl"
+                                           name="price"
+                                           formControlName="price"
                                            placeholder="Tax Excluded Price" type="number">
                                     <span matPrefix>$&nbsp;</span>
                                 </mat-form-field>
 
                                 <mat-form-field class="w-100-p">
                                     <input matInput
-                                           name="priceTaxIncl"
-                                           formControlName="priceTaxIncl"
-                                           placeholder="Tax Included Price" type="number">
-                                    <span matPrefix>$&nbsp;</span>
-                                </mat-form-field>
-
-                                <mat-form-field class="w-100-p">
-                                    <input matInput
-                                           name="taxRate"
-                                           formControlName="taxRate"
+                                           name="tax_rate"
+                                           formControlName="tax_rate"
                                            placeholder="Tax Rate" type="number">
                                     <span matPrefix>&#37;</span>
-                                </mat-form-field>
-
-                                <mat-form-field class="w-100-p">
-                                    <input matInput
-                                           name="comparedPrice"
-                                           formControlName="comparedPrice"
-                                           placeholder="Compared Price" type="number">
-                                    <span matPrefix>$&nbsp;</span>
-                                    <mat-hint align="start">Add a compare price to show next to the real price</mat-hint>
                                 </mat-form-field>
 
                             </div>
