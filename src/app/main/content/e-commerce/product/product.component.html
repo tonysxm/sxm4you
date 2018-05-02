@@ -102,25 +102,6 @@
                                            [matChipInputFor]="categoryList"/>
                                 </mat-form-field>
 
-                                <h3 class="mb-0">Tags</h3>
-                                <mat-form-field class="w-100-p" floatPlaceholder="never">
-                                    <mat-chip-list matPrefix #tagList
-                                                   name="tags"
-                                                   formControlName="tags">
-
-                                        <mat-chip *ngFor="let tag of product.tags"
-                                                  removable="true" (removed)="product.removeTag(tag)">
-                                            {{tag}}
-                                            <mat-icon matChipRemove>cancel</mat-icon>
-                                        </mat-chip>
-                                    </mat-chip-list>
-                                    <input matInput
-                                           matChipInputAddOnBlur="true"
-                                           (matChipInputTokenEnd)="product.addTag($event)"
-                                           placeholder="Add tag..."
-                                           [matChipInputFor]="tagList"/>
-                                </mat-form-field>
-
                               <div class="w-100-p">
                                 <mat-slide-toggle name="active" formControlName="active" required></mat-slide-toggle>
                               </div>
