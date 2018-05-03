@@ -16,6 +16,7 @@ import { FuseUtils } from '@fuse/utils';
 import { Product } from './product.model';
 import { EcommerceProductService } from './product.service';
 import { Location } from '@angular/common';
+import {HttpClient, HttpEventType} from '@angular/common/http';
 
 @Component({
     selector     : 'fuse-e-commerce-product',
@@ -30,12 +31,15 @@ export class FuseEcommerceProductComponent implements OnInit, OnDestroy
     onProductChanged: Subscription;
     pageType: string;
     productForm: FormGroup;
+    selectedFile = null;
 
-    constructor(
+
+  constructor(
         private productService: EcommerceProductService,
         private formBuilder: FormBuilder,
         public snackBar: MatSnackBar,
-        private location: Location
+        private location: Location,
+        private http: HttpClient
     )
     {
     }
@@ -131,5 +135,18 @@ export class FuseEcommerceProductComponent implements OnInit, OnDestroy
                 // Change the location with new one
                 this.location.go('apps/e-commerce/products/' + this.product.id + '/' + this.product.handle);
             });
+    }
+
+    onFileSelected(event) {
+        this.selectedFile = event.target.file[0];
+    }
+
+    uploadFile() {
+        const fd =  new FormData()
+        fd.append('image', this.selectedFile, this.selectedFile.name)
+        this.http.post('localhost/src/assests/images', fd)
+          .subscribe(res => {
+            console.log(res);
+          });
     }
 }

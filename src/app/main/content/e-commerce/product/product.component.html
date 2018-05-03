@@ -112,6 +112,16 @@
                             <div class="tab-content p-24" fusePerfectScrollbar>
                                 <div fxLayout="row wrap" fxLayoutAlign="start start">
 
+                                  <div style="width: 100%">
+                                    <h2>File upload: </h2>
+                                    <input type="file" (change)="onFileSelected($event)">
+                                    <button mat-raised-button
+                                            class="save-product-button mat-white-bg mt-16 mt-sm-0"
+                                            (click)="uploadFile()">
+                                      <span>Upload</span>
+                                    </button>
+                                  </div>
+
                                     <div *ngIf="product.images.length === 0"
                                          class="product-image" fxlayout="row" fxLayoutAlign="center center">
                                         <img class="media" [src]="'assets/images/ecommerce/product-image-placeholder.png'">
