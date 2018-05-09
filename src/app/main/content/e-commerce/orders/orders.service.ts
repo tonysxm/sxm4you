@@ -27,7 +27,6 @@ export class EcommerceOrdersService implements Resolve<any>
     {
 
         return new Promise((resolve, reject) => {
-
             Promise.all([
                 this.getOrders()
             ]).then(
@@ -41,11 +40,13 @@ export class EcommerceOrdersService implements Resolve<any>
 
     getOrders(): Promise<any>
     {
+        const companyId = 1;
         return new Promise((resolve, reject) => {
-            this.http.get('api/e-commerce-orders')
+        this.http.get(`http://localhost:18080/order/list/${companyId}`)
                 .subscribe((response: any) => {
-                    this.orders = response;
+                    this.orders = response.orders;
                     this.onOrdersChanged.next(this.orders);
+                    console.log(JSON.stringify(response))
                     resolve(response);
                 }, reject);
         });

@@ -24,7 +24,7 @@ import { EcommerceOrdersService } from './orders.service';
 export class FuseEcommerceOrdersComponent implements OnInit
 {
     dataSource: FilesDataSource | null;
-    displayedColumns = ['id', 'reference', 'customer', 'total', 'payment', 'status', 'date'];
+    displayedColumns = ['id', 'reference', 'customer', 'total', 'payed', 'status', 'date'];
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild('filter') filter: ElementRef;
@@ -138,23 +138,23 @@ export class FilesDataSource extends DataSource<any>
                 case 'id':
                     [propertyA, propertyB] = [a.id, b.id];
                     break;
-                case 'reference':
-                    [propertyA, propertyB] = [a.reference, b.reference];
+                case 'company':
+                    [propertyA, propertyB] = [a.company];
                     break;
                 case 'customer':
-                    [propertyA, propertyB] = [a.customer.firstName, b.customer.firstName];
+                    [propertyA, propertyB] = [a.customer];
                     break;
                 case 'total':
-                    [propertyA, propertyB] = [a.total, b.total];
+                    [propertyA, propertyB] = [a.total];
                     break;
-                case 'payment':
-                    [propertyA, propertyB] = [a.payment.method, b.payment.method];
+                case 'payed':
+                    [propertyA, propertyB] = [a.is_paid];
                     break;
                 case 'status':
-                    [propertyA, propertyB] = [a.status[0].name, b.status[0].name];
+                    [propertyA, propertyB] = [a.status];
                     break;
                 case 'date':
-                    [propertyA, propertyB] = [a.date, b.date];
+                    [propertyA, propertyB] = [a.status_date];
                     break;
             }
 

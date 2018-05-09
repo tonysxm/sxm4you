@@ -53,9 +53,9 @@
 
                 <!-- Reference Column -->
                 <ng-container cdkColumnDef="reference">
-                    <mat-header-cell *cdkHeaderCellDef mat-sort-header fxHide fxShow.gt-sm>Reference</mat-header-cell>
+                    <mat-header-cell *cdkHeaderCellDef mat-sort-header fxHide fxShow.gt-sm>Company</mat-header-cell>
                     <mat-cell *cdkCellDef="let order" fxHide fxShow.gt-sm>
-                        <p class="text-truncate">{{order.reference}}</p>
+                        <p class="text-truncate">{{order.company}}</p>
                     </mat-cell>
                 </ng-container>
 
@@ -64,8 +64,7 @@
                     <mat-header-cell *cdkHeaderCellDef mat-sort-header>Customer</mat-header-cell>
                     <mat-cell *cdkCellDef="let order">
                         <p class="text-truncate">
-                            {{order.customer.firstName}}
-                            {{order.customer.lastName}}
+                            {{order.customer}}
                         </p>
                     </mat-cell>
                 </ng-container>
@@ -81,11 +80,12 @@
                 </ng-container>
 
                 <!-- Payment Column -->
-                <ng-container cdkColumnDef="payment">
-                    <mat-header-cell *cdkHeaderCellDef mat-sort-header fxHide fxShow.gt-sm>Payment</mat-header-cell>
+                <ng-container cdkColumnDef="payed">
+                    <mat-header-cell *cdkHeaderCellDef mat-sort-header fxHide fxShow.gt-sm>Payed</mat-header-cell>
                     <mat-cell *cdkCellDef="let order" fxHide fxShow.gt-sm>
                         <p class="text-truncate">
-                            {{order.payment.method}}
+                          <mat-icon *ngIf="order.is_paid" class="active-icon mat-green-600-bg s-16">check</mat-icon>
+                          <mat-icon *ngIf="!order.is_paid" class="active-icon mat-red-500-bg s-16">close</mat-icon>
                         </p>
                     </mat-cell>
                 </ng-container>
@@ -95,7 +95,7 @@
                     <mat-header-cell *cdkHeaderCellDef mat-sort-header >Status</mat-header-cell>
                     <mat-cell *cdkCellDef="let order">
                         <p class="status text-truncate h6 p-4" [ngClass]="order.status[0].color">
-                            {{order.status[0].name}}
+                            {{order.status}}
                         </p>
                     </mat-cell>
                 </ng-container>
@@ -105,7 +105,7 @@
                     <mat-header-cell *cdkHeaderCellDef mat-sort-header fxHide fxShow.gt-sm>Date</mat-header-cell>
                     <mat-cell *cdkCellDef="let order" fxHide fxShow.gt-sm>
                         <p class="text-truncate">
-                            {{order.date}}
+                            {{order.status_date}}
                         </p>
                     </mat-cell>
                 </ng-container>
