@@ -10,10 +10,15 @@ export class Order
     total: string;
     date: string;
     customer: any;
+    company: any;
+    email: any;
+    phone_number: any;
     products: any[];
     status: any[];
+    status_date: any;
     payment: any;
     shippingDetails: any[];
+    orderItems: any[];
 
     constructor(order?)
     {
@@ -26,9 +31,14 @@ export class Order
         this.total = order.total || 0;
         this.date = order.date || '';
         this.customer = order.customer || {};
+        this.company = order.company || '';
+        this.email = order.email || '';
+        this.phone_number = order.phone_number || '';
         this.products = order.products || [];
         this.status = order.status || [];
+        this.status_date = order.status_date || '';
         this.payment = order.payment || {};
         this.shippingDetails = order.shippingDetails || [];
+        this.orderItems = order.orderItems || [];
     }
 }

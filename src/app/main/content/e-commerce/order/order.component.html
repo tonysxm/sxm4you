@@ -8,12 +8,9 @@
     <div class="center">
 
         <!-- HEADER -->
-        <div class="header white-fg"
-             fxLayout="row" fxLayoutAlign="space-between center">
-
+        <div class="header white-fg" fxLayout="row" fxLayoutAlign="space-between center">
             <!-- APP TITLE -->
             <div fxLayout="row" fxLayoutAlign="start center">
-
                 <button class="mr-16" mat-icon-button [routerLink]="'/e-commerce/orders'">
                     <mat-icon>arrow_back</mat-icon>
                 </button>
@@ -21,11 +18,12 @@
                 <div fxLayout="column" fxLayoutAlign="start start"
                      *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
                     <div class="h2">
-                        Order {{order.reference}}
+                        Order {{order.id}}
                     </div>
                     <div class="subtitle secondary-text">
                         <span>from</span>
-                        <span>{{order.customer.firstName}} {{order.customer.lastName}}</span>
+                        <span>{{order.customer}}</span>
+                        <span *ngIf="order.company"> | {{order.company}}</span>
                     </div>
                 </div>
             </div>
@@ -67,18 +65,18 @@
                                             <tr>
                                                 <td>
                                                     <div fxLayout="row" fxLayoutAlign="start center">
-                                                        <img class="avatar" [src]="order.customer.avatar">
-                                                        <span class="name text-truncate">{{order.customer.firstName}} {{order.customer.lastName}}</span>
+                                                        <!--<img class="avatar" [src]="order.customer.avatar">-->
+                                                        <span class="name text-truncate">{{order.customer}}</span>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <span class="email text-truncate">{{order.customer.email}}</span>
+                                                    <span class="email text-truncate">{{order.email}}</span>
                                                 </td>
                                                 <td>
-                                                    <span class="phone text-truncate">{{order.customer.phone}}</span>
+                                                    <span class="phone text-truncate">{{order.phone_number}}</span>
                                                 </td>
                                                 <td>
-                                                    <span class="company text-truncate">{{order.customer.company}}</span>
+                                                    <span class="company text-truncate">{{order.company}}</span>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -88,29 +86,29 @@
                                 <mat-tab-group class="addresses">
 
                                     <mat-tab label="Shipping Address">
-                                        <div fxFlex fxLayout="column" *fuseIfOnDom>
-                                            <div class="address h4 py-24">{{order.customer.shippingAddress.address}}</div>
-                                            <agm-map class="w-100-p h-400" [zoom]="15"
-                                                     [latitude]="order.customer.shippingAddress.lat"
-                                                     [longitude]="order.customer.shippingAddress.lng">
-                                                <agm-marker [latitude]="order.customer.shippingAddress.lat"
-                                                            [longitude]="order.customer.shippingAddress.lng">
-                                                </agm-marker>
-                                            </agm-map>
-                                        </div>
+                                        <!--<div fxFlex fxLayout="column" *fuseIfOnDom>-->
+                                            <!--<div class="address h4 py-24">{{order.customer.shippingAddress.address}}</div>-->
+                                            <!--<agm-map class="w-100-p h-400" [zoom]="15"-->
+                                                     <!--[latitude]="order.customer.shippingAddress.lat"-->
+                                                     <!--[longitude]="order.customer.shippingAddress.lng">-->
+                                                <!--<agm-marker [latitude]="order.customer.shippingAddress.lat"-->
+                                                            <!--[longitude]="order.customer.shippingAddress.lng">-->
+                                                <!--</agm-marker>-->
+                                            <!--</agm-map>-->
+                                        <!--</div>-->
                                     </mat-tab>
 
                                     <mat-tab label="Invoice Address" fxLayout="column">
-                                        <div fxFlex fxLayout="column" *fuseIfOnDom>
-                                            <div class="address h4 py-24">{{order.customer.invoiceAddress.address}}</div>
-                                            <agm-map class="w-100-p h-400" [zoom]="15"
-                                                     [latitude]="order.customer.invoiceAddress.lat"
-                                                     [longitude]="order.customer.invoiceAddress.lng">
-                                                <agm-marker [latitude]="order.customer.invoiceAddress.lat"
-                                                            [longitude]="order.customer.invoiceAddress.lng">
-                                                </agm-marker>
-                                            </agm-map>
-                                        </div>
+                                        <!--<div fxFlex fxLayout="column" *fuseIfOnDom>-->
+                                            <!--<div class="address h4 py-24">{{order.customer.invoiceAddress.address}}</div>-->
+                                            <!--<agm-map class="w-100-p h-400" [zoom]="15"-->
+                                                     <!--[latitude]="order.customer.invoiceAddress.lat"-->
+                                                     <!--[longitude]="order.customer.invoiceAddress.lng">-->
+                                                <!--<agm-marker [latitude]="order.customer.invoiceAddress.lat"-->
+                                                            <!--[longitude]="order.customer.invoiceAddress.lng">-->
+                                                <!--</agm-marker>-->
+                                            <!--</agm-map>-->
+                                        <!--</div>-->
                                     </mat-tab>
                                 </mat-tab-group>
                             </div>
@@ -130,24 +128,31 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-
-                                        <tr *ngFor="let status of order.status">
-                                            <td>
-                                                <span class="status h6 p-4" [ngClass]="status.color">
-                                                    {{status.name}}
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <span>
-                                                    {{status.date | date}}
-                                                </span>
-                                            </td>
-                                        </tr>
+                                    <tr>
+                                      <td>
+                                        <span class="status h6 p-4" [ngClass]="order.status.color">{{order.status}}</span>
+                                      </td>
+                                      <td>
+                                        <span>{{order.status_date | date:'short'}}</span>
+                                      </td>
+                                    </tr>
+                                        <!--<tr *ngFor="let status of order.status">-->
+                                            <!--<td>-->
+                                                <!--<span class="status h6 p-4" [ngClass]="status.color">-->
+                                                    <!--{{status.name}}-->
+                                                <!--</span>-->
+                                            <!--</td>-->
+                                            <!--<td>-->
+                                                <!--<span>-->
+                                                    <!--{{status.date | date}}-->
+                                                <!--</span>-->
+                                            <!--</td>-->
+                                        <!--</tr>-->
                                     </tbody>
                                 </table>
 
                                 <form class="update-status p-24"
-                                      (ngSubmit)="updateStatus()"
+                                      (ngSubmit)="updateStatus(order)"
                                       [formGroup]="statusForm"
                                       fxLayout="row" fxLayoutAlign="start center">
 
@@ -265,26 +270,29 @@
                                         <th>Name</th>
                                         <th>Price</th>
                                         <th>Quantity</th>
+                                        <th>Sub-Total</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="product-row"
-                                        *ngFor="let product of order.products"
-                                        [routerLink]="'/e-commerce/products/'+product.id+'/'+product.handle">
+                                    <tr class="product-row" *ngFor="let product of orderItems">
                                         <td class="w-64">
                                             {{product.id}}
                                         </td>
                                         <td class="w-80">
-                                            <img class="product-image" [src]="product.image">
+                                            <img  *ngIf="product.thumbnail" class="product-image" [src]="product.thumbnail">
+                                            <img  *ngIf="!product.thumbnail" class="product-image" [src]="'assets/images/ecommerce/product-image-placeholder.png'">
                                         </td>
                                         <td>
                                             {{product.name}}
                                         </td>
                                         <td>
-                                            {{product.price}}
+                                            {{product.price | currency:'USD':'symbol'}}
                                         </td>
                                         <td>
                                             {{product.quantity}}
+                                        </td>
+                                          <td>
+                                            {{product.price * product.quantity  | currency:'USD':'symbol'}}
                                         </td>
                                     </tr>
                                 </tbody>
@@ -310,7 +318,7 @@
                                                 <div class="client">
                                                     <div class="invoice-number" fxLayout="row" fxLayoutAlign="start center">
                                                         <span class="title">INVOICE</span>
-                                                        <span class="number">{{order.reference}}</span>
+                                                        <span class="number">{{order.id}}</span>
                                                     </div>
 
                                                     <div class="info">
@@ -341,7 +349,6 @@
                                         </div>
 
                                         <div class="content">
-
                                             <table class="simple invoice-table">
                                                 <thead>
                                                     <tr>
@@ -352,7 +359,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr *ngFor="let product of order.products">
+                                                    <tr *ngFor="let product of orderItems">
                                                         <td>
                                                             <div class="title">
                                                                 {{product.name}}
@@ -365,7 +372,7 @@
                                                             {{product.quantity}}
                                                         </td>
                                                         <td class="text-right">
-                                                            {{product.total | currency:'USD':'symbol'}}
+                                                            {{product.price * product.quantity | currency:'USD':'symbol'}}
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -375,7 +382,7 @@
                                                 <tbody>
                                                     <tr class="subtotal">
                                                         <td>SUBTOTAL</td>
-                                                        <td>{{order.subtotal | currency:'USD':'symbol'}}</td>
+                                                        <td>{{order.total | currency:'USD':'symbol'}}</td>
                                                     </tr>
                                                     <tr class="tax">
                                                         <td>TAX</td>
@@ -387,7 +394,7 @@
                                                     </tr>
                                                     <tr class="total">
                                                         <td>TOTAL</td>
-                                                        <td>{{order.total | currency:'USD':'symbol'}}</td>
+                                                        <td>{{order.total-order.discount | currency:'USD':'symbol'}}</td>
                                                     </tr>
                                                 </tbody>
                                             </table>

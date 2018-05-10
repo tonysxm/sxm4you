@@ -13,6 +13,7 @@ import { fuseAnimations } from '@fuse/animations';
 import { Order } from './order.model';
 import { EcommerceOrderService } from './order.service';
 import { orderStatuses } from './order-statuses';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
     selector     : 'fuse-e-commerce-order',
@@ -25,12 +26,15 @@ export class FuseEcommerceOrderComponent implements OnInit, OnDestroy
 {
     order = new Order();
     onOrderChanged: Subscription;
+    onOrderItemsChanged: Subscription;
+    orderItems: any[];
     statusForm: FormGroup;
     orderStatuses = orderStatuses;
 
     constructor(
         private orderService: EcommerceOrderService,
         private formBuilder: FormBuilder,
+        public snackBar: MatSnackBar,
     )
     {
 
@@ -44,7 +48,11 @@ export class FuseEcommerceOrderComponent implements OnInit, OnDestroy
                 .subscribe(order => {
                     this.order = new Order(order);
                 });
-
+        this.onOrderItemsChanged =
+            this.orderService.onOrderItemsChanged
+                .subscribe(orderItems => {
+                    this.orderItems = orderItems;
+                });
         this.statusForm = this.formBuilder.group({
             newStatus: ['']
         });
@@ -55,10 +63,9 @@ export class FuseEcommerceOrderComponent implements OnInit, OnDestroy
         this.onOrderChanged.unsubscribe();
     }
 
-    updateStatus()
+    updateStatus(order: Order)
     {
         const newStatusId = Number.parseInt(this.statusForm.get('newStatus').value);
-
         if ( !newStatusId )
         {
             return;
@@ -67,9 +74,14 @@ export class FuseEcommerceOrderComponent implements OnInit, OnDestroy
         const newStatus = this.orderStatuses.find((status) => {
             return status.id === newStatusId;
         });
+        order.status = newStatus.name;
+        order.status_date = new Date().toISOString().slice(0, 19).replace('T', ' ');
 
-        newStatus['date'] = new Date().toString();
-
-        this.order.status.unshift(newStatus);
+        this.orderService.saveOrder(order).then((res) => {
+          this.snackBar.open('Order Updated', 'OK', {
+            verticalPosition: 'top',
+            duration        : 2000
+          });
+        });
     }
 }

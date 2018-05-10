@@ -77,6 +77,8 @@ export class FuseEcommerceProductComponent implements OnInit, OnDestroy
             id              : [this.product.id],
             name            : [this.product.name],
             handle          : [this.product.handle],
+
+
             description     : [this.product.description],
             categories      : [this.product.categories],
             tags            : [this.product.tags],
@@ -142,11 +144,11 @@ export class FuseEcommerceProductComponent implements OnInit, OnDestroy
     }
 
     uploadFile() {
-        const fd =  new FormData()
-        fd.append('image', this.selectedFile, this.selectedFile.name)
-        this.http.post('localhost/src/assests/images', fd)
-          .subscribe(res => {
-            console.log(res);
-          });
+        // const fd =  new FormData()
+        // fd.append('image', this.selectedFile, this.selectedFile.name)
+        // this.http.post('localhost/src/assests/images', fd)
+        //   .subscribe(res => {
+        //     console.log(res);
+        //   });
     }
 }
