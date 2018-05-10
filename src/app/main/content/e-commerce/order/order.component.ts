@@ -40,8 +40,7 @@ export class FuseEcommerceOrderComponent implements OnInit, OnDestroy
 
     }
 
-    ngOnInit()
-    {
+    ngOnInit() {
         // Subscribe to update order on changes
         this.onOrderChanged =
             this.orderService.onOrderChanged
@@ -58,13 +57,11 @@ export class FuseEcommerceOrderComponent implements OnInit, OnDestroy
         });
     }
 
-    ngOnDestroy()
-    {
+    ngOnDestroy() {
         this.onOrderChanged.unsubscribe();
     }
 
-    updateStatus(order: Order)
-    {
+    updateStatus(order: Order) {
         const newStatusId = Number.parseInt(this.statusForm.get('newStatus').value);
         if ( !newStatusId )
         {
@@ -83,5 +80,9 @@ export class FuseEcommerceOrderComponent implements OnInit, OnDestroy
             duration        : 2000
           });
         });
+    }
+
+    updatePayment(order: Order) {
+
     }
 }
