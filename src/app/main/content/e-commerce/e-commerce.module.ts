@@ -3,10 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { CdkTableModule } from '@angular/cdk/table';
 
 import {
-  MatButtonModule, MatChipsModule, MatFormFieldModule, MatIconModule, MatInputModule,
+  DateAdapter, MAT_DATE_LOCALE,
+  MatButtonModule, MatChipsModule, MatDatepickerModule, MatFormFieldModule, MatIconModule, MatInputModule,
+  MatNativeDateModule,
   MatPaginatorModule,
   MatRippleModule, MatSelectModule, MatSlideToggleModule, MatSnackBar, MatSnackBarModule, MatSortModule, MatTableModule,
-  MatTabsModule
+  MatTabsModule, NativeDateAdapter
 } from '@angular/material';
 
 import { NgxChartsModule } from '@swimlane/ngx-charts';
@@ -98,6 +100,8 @@ const routes: Routes = [
         MatTabsModule,
         MatSlideToggleModule,
         MatSnackBarModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
 
         NgxChartsModule,
         AgmCoreModule.forRoot({
@@ -113,7 +117,8 @@ const routes: Routes = [
         EcommerceProductService,
         EcommerceOrdersService,
         EcommerceOrderService,
-        MatSnackBar
+        MatSnackBar,
+        NativeDateAdapter
     ]
 })
 export class FuseEcommerceModule

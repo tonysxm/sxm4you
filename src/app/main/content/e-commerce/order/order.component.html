@@ -204,6 +204,39 @@
                                     </tbody>
                                 </table>
 
+                              <form class="update-payment p-24"
+                                    [formGroup]="paymentForm"
+                                    fxLayout="row" fxLayoutAlign="start center">
+
+                                <mat-form-field class="mr-16" fxFlex>
+                                  <mat-select formControlName="paymentMethod" placeholder="Select a payment method" required>
+                                    <mat-option [value]="0">Cash</mat-option>
+                                    <mat-option [value]="1">Check</mat-option>
+                                    <mat-option [value]="2">Credit card</mat-option>
+                                    <mat-option [value]="3">Paypal</mat-option>
+                                    <mat-option [value]="4">Money order</mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+
+                                <mat-form-field class="mr-16" fxFlex>
+                                  <input formControlName="amount" matInput placeholder="Amount.." required>
+                                </mat-form-field>
+
+                                <mat-form-field class="mr-16" fxFlex>
+                                  <input formControlName="paymentDate" matInput [matDatepicker]="picker" placeholder="Choose a date" required>
+                                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                  <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
+
+
+                                <button (click)="updateStatus(order)" mat-raised-button class="mat-accent" [disabled]="paymentForm.invalid">
+                                  Update Payment
+                                </button>
+                                <button (click)="paymentForm.reset()" mat-raised-button class="mat-warn" [disabled]="paymentForm.invalid">
+                                  Reset
+                                </button>
+                              </form>
+
 
                             </div>
 

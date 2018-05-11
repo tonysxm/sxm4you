@@ -29,7 +29,10 @@ export class FuseEcommerceOrderComponent implements OnInit, OnDestroy
     onOrderItemsChanged: Subscription;
     orderItems: any[];
     statusForm: FormGroup;
+    paymentForm: FormGroup;
     orderStatuses = orderStatuses;
+    statusColor: string;
+
 
     constructor(
         private orderService: EcommerceOrderService,
@@ -55,6 +58,12 @@ export class FuseEcommerceOrderComponent implements OnInit, OnDestroy
         this.statusForm = this.formBuilder.group({
             newStatus: ['']
         });
+
+        this.paymentForm = this.formBuilder.group({
+          paymentMethod: [''],
+          amount: [''],
+          paymentDate: ['']
+        });
     }
 
     ngOnDestroy() {
@@ -73,6 +82,7 @@ export class FuseEcommerceOrderComponent implements OnInit, OnDestroy
         });
         order.status = newStatus.name;
         order.status_date = new Date().toISOString().slice(0, 19).replace('T', ' ');
+        this.statusForm.reset()
 
         this.orderService.saveOrder(order).then((res) => {
           this.snackBar.open('Order Updated', 'OK', {
