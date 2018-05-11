@@ -140,7 +140,6 @@
                                 </table>
 
                                 <form class="update-status p-24"
-                                      (ngSubmit)="updateStatus(order)"
                                       [formGroup]="statusForm"
                                       fxLayout="row" fxLayoutAlign="start center">
 
@@ -154,10 +153,14 @@
                                         </mat-select>
                                     </mat-form-field>
 
-                                    <button mat-raised-button class="mat-accent"
+                                    <button mat-raised-button class="mat-accent" (click)="updateStatus(order)"
                                             [disabled]="statusForm.invalid">
                                         Update Status
-                                    </button>
+                                    </button><br/>
+
+                                  <button (click)="statusForm.reset()" mat-raised-button class="mat-warn" [disabled]="statusForm.invalid">
+                                    Reset
+                                  </button>
                                 </form>
 
                             </div>

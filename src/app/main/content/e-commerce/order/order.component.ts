@@ -33,7 +33,6 @@ export class FuseEcommerceOrderComponent implements OnInit, OnDestroy
     orderStatuses = orderStatuses;
     statusColor: string;
 
-
     constructor(
         private orderService: EcommerceOrderService,
         private formBuilder: FormBuilder,
