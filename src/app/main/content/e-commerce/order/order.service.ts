@@ -11,14 +11,12 @@ export class EcommerceOrderService implements Resolve<any>
     routeParams: any;
     order: any;
     orderItems: any;
+    payments: any[];
     onOrderChanged: BehaviorSubject<any> = new BehaviorSubject({});
     onOrderItemsChanged: BehaviorSubject<any> = new BehaviorSubject({});
+    onOrderPaymentsChanged: BehaviorSubject<any> = new BehaviorSubject({});
 
-    constructor(
-        private http: HttpClient
-    )
-    {
-    }
+    constructor(private http: HttpClient) {}
 
     /**
      * Resolve
@@ -26,9 +24,7 @@ export class EcommerceOrderService implements Resolve<any>
      * @param {RouterStateSnapshot} state
      * @returns {Observable<any> | Promise<any> | any}
      */
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any
-    {
-
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
       this.routeParams = route.params;
 
       const orderItemsPromise = new Promise((resolve, reject) => {
@@ -55,12 +51,22 @@ export class EcommerceOrderService implements Resolve<any>
         );
       });
 
+      const orderPayments = new Promise((resolve, reject) => {
+        Promise.all([
+          this.getPayments()
+        ]).then(
+          () => {
+            resolve();
 
-      return {orderPromise, orderItemsPromise};
+          },
+          reject
+        );
+      });
+
+      return {orderPromise, orderItemsPromise, orderPayments};
     }
 
-      getOrder(): Promise<any>
-      {
+      getOrder(): Promise<any> {
           return new Promise((resolve, reject) => {
               this.http.get('http://localhost:18080/order/' + this.routeParams.id)
                   .subscribe((response: any) => {
@@ -71,8 +77,7 @@ export class EcommerceOrderService implements Resolve<any>
           });
       }
 
-    getOrderItems(): Promise<any>
-    {
+    getOrderItems(): Promise<any> {
       return new Promise((resolve, reject) => {
         this.http.get('http://localhost:18080/order/items/' + this.routeParams.id)
           .subscribe((response: any) => {
@@ -83,8 +88,7 @@ export class EcommerceOrderService implements Resolve<any>
       });
     }
 
-    saveOrder(order)
-    {
+    saveOrder(order) {
         return new Promise((resolve, reject) => {
             this.http.put('http://localhost:18080/order/' + order.id, order)
                 .subscribe((response: any) => {
@@ -93,8 +97,7 @@ export class EcommerceOrderService implements Resolve<any>
         });
     }
 
-    addOrder(order)
-    {
+    addOrder(order) {
         return new Promise((resolve, reject) => {
             this.http.post('api/e-commerce-orders/', order)
                 .subscribe((response: any) => {
@@ -102,4 +105,25 @@ export class EcommerceOrderService implements Resolve<any>
                 }, reject);
         });
     }
+
+    getPayments(): Promise<any> {
+      return new Promise((resolve, reject) => {
+        this.http.get('http://localhost:18080/payment/order/' + this.routeParams.id)
+          .subscribe((response: any) => {
+            this.payments = response.payments;
+            this.onOrderPaymentsChanged.next(this.payments);
+            resolve(response);
+          }, reject);
+      });
+    }
+
+    addPayment(payment) {
+      return new Promise((resolve, reject) => {
+        this.http.post('http://localhost:18080/payment/', payment)
+          .subscribe((response: any) => {
+            resolve(response);
+          }, reject);
+      });
+    }
+
 }

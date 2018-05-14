@@ -182,25 +182,25 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
+                                        <tr *ngFor="let payment of payments">
                                             <td>
                                                 <span class="text-truncate">
-                                                    {{order.payment.transactionId}}
+                                                    {{payment.id}}
                                                 </span>
                                             </td>
                                             <td>
                                                 <span class="text-truncate">
-                                                    {{order.payment.method}}
+                                                    {{payment.payment_method}}
                                                 </span>
                                             </td>
                                             <td>
                                                 <span class="text-truncate">
-                                                    {{order.payment.amount}}
+                                                    {{payment.amount | currency:'USD':'symbol'}}
                                                 </span>
                                             </td>
                                             <td>
                                                 <span class="text-truncate">
-                                                    {{order.payment.date | date}}
+                                                    {{payment.payment_date | date}}
                                                 </span>
                                             </td>
                                         </tr>
@@ -213,26 +213,27 @@
 
                                 <mat-form-field class="mr-16" fxFlex>
                                   <mat-select formControlName="paymentMethod" placeholder="Select a payment method" required>
-                                    <mat-option [value]="0">Cash</mat-option>
-                                    <mat-option [value]="1">Check</mat-option>
-                                    <mat-option [value]="2">Credit card</mat-option>
-                                    <mat-option [value]="3">Paypal</mat-option>
-                                    <mat-option [value]="4">Money order</mat-option>
+                                    <mat-option [value]="'Cash'">Cash</mat-option>
+                                    <mat-option [value]="'Check'">Check</mat-option>
+                                    <mat-option [value]="'Credit card'">Credit card</mat-option>
+                                    <mat-option [value]="'Paypal'">Paypal</mat-option>
+                                    <mat-option [value]="'Money order'">Money order</mat-option>
                                   </mat-select>
                                 </mat-form-field>
 
                                 <mat-form-field class="mr-16" fxFlex>
-                                  <input formControlName="amount" matInput placeholder="Amount.." required>
+                                  <input formControlName="amount" matInput type="number" placeholder="Amount.." required>
                                 </mat-form-field>
 
                                 <mat-form-field class="mr-16" fxFlex>
-                                  <input formControlName="paymentDate" matInput [matDatepicker]="picker" placeholder="Choose a date" required>
+                                  <input formControlName="paymentDate" matInput [matDatepicker]="picker"
+                                         placeholder="Choose a date" required pattern="\d{1,2}/\d{1,2}/\d{4}">
                                   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                   <mat-datepicker #picker></mat-datepicker>
                                 </mat-form-field>
 
 
-                                <button (click)="updateStatus(order)" mat-raised-button class="mat-accent" [disabled]="paymentForm.invalid">
+                                <button (click)="addPaymentToOrder(order)" mat-raised-button class="mat-accent" [disabled]="paymentForm.invalid">
                                   Update Payment
                                 </button>
                                 <button (click)="paymentForm.reset()" mat-raised-button class="mat-warn" [disabled]="paymentForm.invalid">

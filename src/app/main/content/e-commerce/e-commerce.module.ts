@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { CdkTableModule } from '@angular/cdk/table';
 
 import {
-  DateAdapter, MAT_DATE_LOCALE,
   MatButtonModule, MatChipsModule, MatDatepickerModule, MatFormFieldModule, MatIconModule, MatInputModule,
   MatNativeDateModule,
   MatPaginatorModule,
