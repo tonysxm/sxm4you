@@ -17,7 +17,7 @@
                 <h3 matLine>{{shoppingchartItem.product.name}}</h3>
                 <h3 matLine>
                   {{shoppingchartItem.product.price | currency }} x
-                  <input style="width: 40px" matInput type="number" [(ngModel)]="shoppingchartItem.amount" value="{{shoppingchartItem.amount}}">
+                  <input style="width: 40px" matInput (change)="updateShoppingCartItem(shoppingchartItem.product, shoppingchartItem.amount)" type="number" [(ngModel)]="shoppingchartItem.amount" value="{{shoppingchartItem.amount}}">
                   = {{shoppingchartItem.getSubTotal() | currency}}
                 </h3>
               </td>

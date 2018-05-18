@@ -17,6 +17,7 @@ import { WebshopModule } from './main/content/webshop/webshop.module';
 import {FuseEcommerceModule} from "./main/content/e-commerce/e-commerce.module";
 import {FuseFakeDbService} from "./fuse-fake-db/fuse-fake-db.service";
 import {InMemoryWebApiModule} from "angular-in-memory-web-api";
+import {StorageServiceModule} from "angular-webstorage-service";
 
 const appRoutes: Routes = [
     {
@@ -46,7 +47,8 @@ const appRoutes: Routes = [
         FuseSharedModule,
         FuseMainModule,
         WebshopModule,
-        FuseEcommerceModule
+        FuseEcommerceModule,
+        StorageServiceModule
     ],
     bootstrap   : [
         AppComponent
