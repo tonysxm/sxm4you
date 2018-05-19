@@ -31,6 +31,7 @@ export class FuseMainComponent implements OnDestroy
                     (newSettings) => {
                         this.fuseSettings = newSettings;
                         this.layoutMode = this.fuseSettings.layout.mode;
+                        this.fuseSettings.layout.navigationFolded = true;
                     }
                 );
 

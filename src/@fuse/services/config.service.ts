@@ -7,7 +7,7 @@ import { Platform } from '@angular/cdk/platform';
 const DEFAULT_CONFIG = {
     layout          : {
         navigation      : 'left', // 'right', 'left', 'top', 'none'
-        navigationFolded: false, // true, false
+        navigationFolded: true, // true, false
         toolbar         : 'below', // 'above', 'below', 'none'
         footer          : 'below', // 'above', 'below', 'none'
         mode            : 'fullwidth' // 'boxed', 'fullwidth'
