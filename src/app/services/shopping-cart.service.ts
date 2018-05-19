@@ -16,12 +16,10 @@ export class ShoppingCartService {
   }
 
   addCartItem(product: Product, amount: number) {
-      const shoppingCartItem = new ShoppingCartItem();
-      shoppingCartItem.product = product;
-      shoppingCartItem.amount = amount;
 
-      const doesExist = this.shoppingCartItems.some(shoppingCartItem => {
-          return product === shoppingCartItem.product;
+      const shoppingCartItem = new ShoppingCartItem(product, amount);
+      const doesExist = this.shoppingCartItems.some(cartItem => {
+          return product === cartItem.product;
       });
 
       if (doesExist) {
@@ -87,9 +85,13 @@ export class ShoppingCartService {
     this.storage.set(userId, serializedShoppingCartItems);
   }
 
-  private getShoppingCartItemsFromLocalStorage(userId): void {
+  private getShoppingCartItemsFromLocalStorage(userId) {
     const shoppingCartItems = this.storage.get(userId);
-    return JSON.parse(shoppingCartItems) as ShoppingCartItem[];
+    return JSON.parse(shoppingCartItems);
+  }
+
+  public clearShoppingCartItemsForLocalStorage(userId) {
+    this.storage.remove(userId);
   }
 
 }

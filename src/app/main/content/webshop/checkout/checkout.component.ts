@@ -1,12 +1,13 @@
 import {AfterContentChecked, Component, OnInit} from '@angular/core';
-import {ShoppingCartService} from "../../../../services/shopping-cart.service";
-import {ShoppingCartItem} from "../../../../models/shopping-cart-item";
+import {ShoppingCartService} from '../../../../services/shopping-cart.service';
+import {ShoppingCartItem} from '../../../../models/shopping-cart-item';
 import { fuseAnimations } from '@fuse/animations';
-import { FuseUtils } from '@fuse/utils';
+import {EcommerceOrderService} from '../../e-commerce/order/order.service';
+import {MatSnackBar} from '@angular/material';
 
 
 @Component({
-  selector: 'app-checkout',
+  selector: 'fuse-checkout',
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.scss'],
   animations : fuseAnimations
@@ -65,7 +66,8 @@ export class CheckoutComponent implements OnInit, AfterContentChecked {
   ];
 
 
-  constructor(private shoppingCartService: ShoppingCartService) { }
+  constructor(private shoppingCartService: ShoppingCartService, private orderService: EcommerceOrderService,
+              public snackBar: MatSnackBar) {}
 
   ngOnInit() {
     this.shoppingCartItems = this.shoppingCartService.getShoppingCartItems();
@@ -79,8 +81,30 @@ export class CheckoutComponent implements OnInit, AfterContentChecked {
     }
   }
 
-  checkoutOrder() {
-
+  checkoutOrder(employee_id: number, shoppingCartItems: ShoppingCartItem[]) {
+    const orderData: any = {};
+    orderData.employee_id = employee_id;
+    orderData.company_id = 1;
+    this.orderService.addOrder(orderData).then((res) => {
+      this.snackBar.open('Order Created', 'OK', {
+        verticalPosition: 'top',
+        duration        : 2000
+      });
+      // @ts-ignore
+      const orderId = res.order.insertId;
+      // @ts-ignore
+      const orderItems = shoppingCartItems.map(function(shoppingCartItem) {
+          return {'product_id': shoppingCartItem.product.id, 'order_id': orderId, 'name': shoppingCartItem.product.name,
+                  'price': shoppingCartItem.product.price, 'quantity' : shoppingCartItem.amount};
+        }
+      );
+      this.orderService.addOrderItems(orderItems).then((orderItemsResult) => {
+          this.shoppingCartService.clearShoppingCartItemsForLocalStorage(employee_id);
+      })
+      .catch((err) => {
+          console.log(err);
+      });
+    });
   }
 
 }

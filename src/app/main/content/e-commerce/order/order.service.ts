@@ -88,6 +88,18 @@ export class EcommerceOrderService implements Resolve<any>
       });
     }
 
+
+  addOrderItems(orderItems){
+    const orderId = orderItems[0].order_id;
+    const body = JSON.stringify(orderItems);
+    return new Promise((resolve, reject) => {
+      this.http.post('http://localhost:18080/order/' + orderId, JSON.parse(`{"orderItems"  : ${body} }`))
+        .subscribe((response: any) => {
+          resolve(response);
+        }, reject);
+    });
+  }
+
     saveOrder(order) {
         return new Promise((resolve, reject) => {
             this.http.put('http://localhost:18080/order/' + order.id, order)
@@ -99,7 +111,7 @@ export class EcommerceOrderService implements Resolve<any>
 
     addOrder(order) {
         return new Promise((resolve, reject) => {
-            this.http.post('api/e-commerce-orders/', order)
+            this.http.post('http://localhost:18080/order/', order)
                 .subscribe((response: any) => {
                     resolve(response);
                 }, reject);

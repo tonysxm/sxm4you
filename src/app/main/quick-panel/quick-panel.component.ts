@@ -38,7 +38,7 @@ export class FuseQuickPanelComponent implements OnInit, AfterContentChecked
         }
     }
 
-    updateShoppingCartItem(product: Product, amount: number) {
+    updateShoppingCartItem(product: any, amount: any) {
       this.shoppingCartService.updateShoppingCartItemAmount(product, amount);
     }
 
