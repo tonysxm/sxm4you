@@ -139,22 +139,28 @@ export class FilesDataSource extends DataSource<any>
                     [propertyA, propertyB] = [a.id, b.id];
                     break;
                 case 'company':
-                    [propertyA, propertyB] = [a.company];
+                  // @ts-ignore
+                  [propertyA, propertyB] = [a.company];
                     break;
                 case 'customer':
-                    [propertyA, propertyB] = [a.customer];
+                  // @ts-ignore
+                  [propertyA, propertyB] = [a.customer];
                     break;
                 case 'total':
-                    [propertyA, propertyB] = [a.total];
+                  // @ts-ignore
+                  [propertyA, propertyB] = [a.total];
                     break;
                 case 'payed':
-                    [propertyA, propertyB] = [a.is_paid];
+                  // @ts-ignore
+                  [propertyA, propertyB] = [a.is_paid];
                     break;
                 case 'status':
-                    [propertyA, propertyB] = [a.status];
+                  // @ts-ignore
+                  [propertyA, propertyB] = [a.status];
                     break;
                 case 'date':
-                    [propertyA, propertyB] = [a.status_date];
+                  // @ts-ignore
+                  [propertyA, propertyB] = [a.status_date];
                     break;
             }
 
