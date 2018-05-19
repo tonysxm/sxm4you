@@ -94,12 +94,6 @@ export class FuseToolbarComponent
         this.sidebarService.getSidebar(key).toggleOpen();
     }
 
-    search(value)
-    {
-        // Do your search here...
-        console.log(value);
-    }
-
     setLanguage(lang)
     {
         // Set the selected language for toolbar

@@ -28,7 +28,6 @@ export class StoreComponent implements OnInit {
     this.productService.getProductsFromCompany(this.storeId).subscribe( data => {
       // @ts-ignore
       this.products = data.products as Product;
-      console.log(this.products);
       this.categories = new Set(this.products.flatMap(x => JSON.parse(x.categories)));
     });
   }

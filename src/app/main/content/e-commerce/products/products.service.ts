@@ -58,7 +58,6 @@ export class EcommerceProductsService implements Resolve<any>
       this.http.get(`http://localhost:18080/company/${companyId}/products`)
         .subscribe((response: any) => {
           this.products = response.products as Product[];
-          console.log(this.products);
           this.onProductsChanged.next(this.products);
           resolve(response);
         }, reject);

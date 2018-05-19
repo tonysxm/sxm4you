@@ -46,7 +46,6 @@ export class EcommerceOrdersService implements Resolve<any>
                 .subscribe((response: any) => {
                     this.orders = response.orders;
                     this.onOrdersChanged.next(this.orders);
-                    console.log(JSON.stringify(response))
                     resolve(response);
                 }, reject);
         });
