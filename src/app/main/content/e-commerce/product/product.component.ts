@@ -100,9 +100,10 @@ export class FuseEcommerceProductComponent implements OnInit, OnDestroy
 
     saveProduct()
     {
-        const data = this.productForm.getRawValue();
-        data.handle = FuseUtils.handleize(data.name);
-        this.productService.saveProduct(data)
+      const data = this.productForm.getRawValue();
+      data.handle = FuseUtils.handleize(data.name);
+      data.active = (data.active === true ) ? 1 : 0;
+      this.productService.saveProduct(data)
             .then(() => {
 
                 // Trigger the subscription with new data
@@ -119,9 +120,10 @@ export class FuseEcommerceProductComponent implements OnInit, OnDestroy
 
     addProduct()
     {
-        const data = this.productForm.getRawValue();
-        data.handle = FuseUtils.handleize(data.name);
-        this.productService.addProduct(data)
+      const data = this.productForm.getRawValue();
+      data.handle = FuseUtils.handleize(data.name);
+      data.active = (data.active === true ) ? 1 : 0;
+      this.productService.addProduct(data)
             .then(() => {
 
                 // Trigger the subscription with new data
