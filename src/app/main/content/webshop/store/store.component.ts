@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {Product} from "../../../../models/product";
 import {ShoppingCartService} from "../../../../services/shopping-cart.service";
 import 'rxjs/add/operator/mergeMap';
 import {ProductService} from "../../../../services/product.service";
 import {ActivatedRoute} from "@angular/router";
+import {Product} from "../../e-commerce/product/product.model";
 
 @Component({
   selector: 'app-store',

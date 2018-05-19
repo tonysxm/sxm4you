@@ -1,4 +1,4 @@
-import {Product} from "./product";
+import {Product} from "../main/content/e-commerce/product/product.model";
 
 export class ShoppingCartItem {
   id?: number;

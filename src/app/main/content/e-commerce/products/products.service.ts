@@ -3,12 +3,12 @@ import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/r
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import {Product} from "../product/product.model";
+import {Product} from '../product/product.model';
 
 @Injectable()
 export class EcommerceProductsService implements Resolve<any>
 {
-    products: any[];
+    products: Product[];
     onProductsChanged: BehaviorSubject<any> = new BehaviorSubject({});
 
     constructor(
@@ -57,7 +57,7 @@ export class EcommerceProductsService implements Resolve<any>
     return new Promise((resolve, reject) => {
       this.http.get(`http://localhost:18080/company/${companyId}/products`)
         .subscribe((response: any) => {
-          this.products = response.products as Product;
+          this.products = response.products as Product[];
           console.log(this.products);
           this.onProductsChanged.next(this.products);
           resolve(response);

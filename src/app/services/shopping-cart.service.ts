@@ -1,7 +1,7 @@
 import {Inject, Injectable} from '@angular/core';
 import {ShoppingCartItem} from '../models/shopping-cart-item';
-import {Product} from '../models/product';
 import {LOCAL_STORAGE, WebStorageService} from "angular-webstorage-service";
+import {Product} from "../main/content/e-commerce/product/product.model";
 
 @Injectable()
 export class ShoppingCartService {
@@ -30,7 +30,7 @@ export class ShoppingCartService {
       }
   }
 
-  updateShoppingCartItemAmount(product: Product, amount: number) {
+  updateShoppingCartItemAmount(product: any, amount: number) {
     const indexOfShoppingCartItem = this.shoppingCartItems.findIndex(function(element) {
       return element.product === product;
     });
