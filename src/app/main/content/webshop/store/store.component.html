@@ -28,7 +28,7 @@
       <div>
         <div style="margin: auto;padding:10px;" fxFlexOffset="2px" fxLayoutGap="5px" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="start stretch">
           <div style="padding-bottom: 5px;" *ngFor="let product of products | productFilter : searchText | productCategoryFilter : selectedCategories">
-              <mat-card class="product-card">
+              <mat-card class="product-card" *ngIf="product.active && product.price > 0">
                 <mat-card-header>
                   <mat-card-title><h3>{{product.name}}</h3></mat-card-title>
                   <!--<mat-card-subtitle>-->
