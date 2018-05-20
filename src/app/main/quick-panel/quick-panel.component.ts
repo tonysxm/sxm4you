@@ -1,8 +1,9 @@
+///<reference path="../../services/shopping-cart.service.ts"/>
 import {AfterContentChecked, Component, Inject, OnInit, ViewEncapsulation} from '@angular/core';
 import {ShoppingCartService} from '../../services/shopping-cart.service';
 import {ShoppingCartItem} from '../../models/shopping-cart-item';
 import {Router} from '@angular/router';
-import {Product} from "../content/e-commerce/product/product.model";
+import {Product} from '../content/e-commerce/product/product.model';
 
 @Component({
     selector     : 'fuse-quick-panel',
@@ -38,7 +39,7 @@ export class FuseQuickPanelComponent implements OnInit, AfterContentChecked
         }
     }
 
-    updateShoppingCartItem(product: any, amount: any) {
+    updateShoppingCartItem(product: Product, amount: any) {
       this.shoppingCartService.updateShoppingCartItemAmount(product, amount);
     }
 

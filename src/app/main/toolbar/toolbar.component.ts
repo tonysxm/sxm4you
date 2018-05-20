@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { FuseConfigService } from '@fuse/services/config.service';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
+import {ShoppingCartService} from "../../services/shopping-cart.service";
 
 @Component({
     selector   : 'fuse-toolbar',
@@ -19,12 +20,14 @@ export class FuseToolbarComponent
     showLoadingBar: boolean;
     horizontalNav: boolean;
     noNav: boolean;
+    shoppingCartTotals: number;
 
     constructor(
         private router: Router,
         private fuseConfig: FuseConfigService,
         private sidebarService: FuseSidebarService,
-        private translate: TranslateService
+        private translate: TranslateService,
+        public shoppingCartService: ShoppingCartService
     )
     {
         this.userStatusOptions = [

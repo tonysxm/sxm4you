@@ -80,11 +80,12 @@
 
             <div class="toolbar-separator" fxHide fxShow.gt-xs></div>
 
-            <button mat-icon-button
+            <button mat-icon-button style="width: 100px"
                     class="mat-icon-button quick-panel-toggle-button"
                     fuseMatSidenavToggler="quick-panel"
                     aria-label="Toggle quick panel">
                 <mat-icon class="icon">shopping_cart</mat-icon>
+                <span class="badge badge-secondary">{{shoppingCartService.getTotalPrice() | currency:'USD':'symbol'}}</span>
             </button>
         </div>
     </div>

@@ -7,7 +7,7 @@
 </mat-list>
 <mat-divider cdkFocusRegionEnd></mat-divider>
 
-<div *ngIf="shoppingCartItems.length !== 0">
+<div *ngIf="shoppingCartTotal !== 0">
   <mat-list>
       <table style="width: 98%">
         <tbody>
@@ -47,10 +47,10 @@
   <mat-divider style="margin-bottom: 20px"></mat-divider>
 
   <div style="text-align: center;">
-    <button fuseMatSidenavToggler="quick-panel" (click)="checkout(1)" class="mat-accent compose-dialog-button mat-raised-button mat-button">Checkout</button>
+    <button [disabled]="shoppingCartTotal == 0" fuseMatSidenavToggler="quick-panel" (click)="checkout(1)" class="mat-accent compose-dialog-button mat-raised-button mat-button">Checkout</button>
   </div>
 </div>
 
-<div style="text-align: center; margin: 10px" *ngIf="shoppingCartItems.length == 0">
+<div style="text-align: center; margin: 10px" *ngIf="shoppingCartTotal == 0">
   <span>Cart is empty</span>
 </div>

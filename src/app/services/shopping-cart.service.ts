@@ -1,7 +1,7 @@
 import {Inject, Injectable} from '@angular/core';
 import {ShoppingCartItem} from '../models/shopping-cart-item';
-import {LOCAL_STORAGE, WebStorageService} from "angular-webstorage-service";
-import {Product} from "../main/content/e-commerce/product/product.model";
+import {LOCAL_STORAGE, WebStorageService} from 'angular-webstorage-service';
+import {Product} from '../main/content/e-commerce/product/product.model';
 
 @Injectable()
 export class ShoppingCartService {
@@ -9,6 +9,7 @@ export class ShoppingCartService {
   userId: number;
   shoppingCartItems: ShoppingCartItem[] = new Array();
   shoppingCartTotals: number[] = new Array();
+  shoppingCartTotal: number;
   shoppingCart = new Map();
 
   constructor(@Inject(LOCAL_STORAGE) private storage: WebStorageService) {
@@ -30,7 +31,7 @@ export class ShoppingCartService {
       }
   }
 
-  updateShoppingCartItemAmount(product: any, amount: number) {
+  updateShoppingCartItemAmount(product: Product, amount: number) {
     const indexOfShoppingCartItem = this.shoppingCartItems.findIndex(function(element) {
       return element.product === product;
     });
@@ -66,7 +67,7 @@ export class ShoppingCartService {
   }
 
   getShoppingCartItems() {
-    const shoppingCartItemsFromLocalStorage = this.getShoppingCartItemsFromLocalStorage(1)
+    const shoppingCartItemsFromLocalStorage = this.getShoppingCartItemsFromLocalStorage(1);
     if (shoppingCartItemsFromLocalStorage) {
       const shoppingCartItems = shoppingCartItemsFromLocalStorage.map(x => new ShoppingCartItem(x.product, x.amount));
       return this.shoppingCartItems = shoppingCartItems;
@@ -80,6 +81,14 @@ export class ShoppingCartService {
     return this.shoppingCartTotals;
   }
 
+  getTotalPrice() {
+    const reducer = (accumulator, currentValue) => accumulator + currentValue;
+    if ( this.getTotals().length !== 0) {
+      this.shoppingCartTotal = this.shoppingCartTotals.reduce(reducer);
+    }
+    return this.shoppingCartTotal;
+  }
+
   private saveInLocalStorage(userId, ShoppingCartItems: any): void {
     const serializedShoppingCartItems = JSON.stringify(ShoppingCartItems);
     this.storage.set(userId, serializedShoppingCartItems);
@@ -91,7 +100,12 @@ export class ShoppingCartService {
   }
 
   public clearShoppingCartItemsForLocalStorage(userId) {
+    console.log('Before:' + this.storage.get(userId));
+    this.shoppingCartItems  = new Array();
+    this.shoppingCartTotals = new Array();
+    this.shoppingCartTotal  = 0;
     this.storage.remove(userId);
+    console.log('After:' + this.storage.get(userId));
   }
 
 }

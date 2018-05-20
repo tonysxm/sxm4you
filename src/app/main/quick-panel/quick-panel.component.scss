@@ -42,3 +42,27 @@ mat-form-field-infix {
 .mat-input-wrapper .mat-form-field-wrapper {
   width: 40px;
 }
+
+.badge {
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  padding: .25em .4em;
+  font-size: 86%;
+  font-weight: normal;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+}
+
+.badge-secondary {
+  color: #fff;
+  background-color: #2196F3;
+}
+
+badge {
+
+}
