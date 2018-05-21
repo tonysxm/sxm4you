@@ -78,7 +78,15 @@ const routes = [
 
     FuseSharedModule
   ],
-  declarations: [StoreListComponent, StoreComponent, ProductListComponent, ShoppingCartComponent, ProductCategoryFilterPipe, ProductFilterPipe, CheckoutComponent],
+  declarations: [
+    StoreListComponent,
+    StoreComponent,
+    ProductListComponent,
+    ShoppingCartComponent,
+    ProductCategoryFilterPipe,
+    ProductFilterPipe,
+    CheckoutComponent
+  ],
 
 })
 export class WebshopModule { }

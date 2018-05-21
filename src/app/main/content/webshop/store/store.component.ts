@@ -27,7 +27,7 @@ export class StoreComponent implements OnInit {
   ngOnInit() {
     this.productService.getProductsFromCompany(this.storeId).subscribe( data => {
       // @ts-ignore
-      this.products = data.products as Product;
+      this.products = data.products as Product[];
       this.categories = new Set(this.products.flatMap(x => JSON.parse(x.categories)));
     });
   }
