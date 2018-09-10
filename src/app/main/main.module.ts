@@ -12,10 +12,13 @@ import { FuseQuickPanelModule } from 'app/main/quick-panel/quick-panel.module';
 import { FuseToolbarModule } from 'app/main/toolbar/toolbar.module';
 
 import { FuseMainComponent } from './main.component';
+import {AuthService} from "../services/auth.service";
+import {CallbackComponent} from "../callback/callback.component";
 
 @NgModule({
     declarations: [
-        FuseMainComponent
+        FuseMainComponent,
+        CallbackComponent
     ],
     imports     : [
         RouterModule,
@@ -39,6 +42,9 @@ import { FuseMainComponent } from './main.component';
     ],
     exports     : [
         FuseMainComponent
+    ],
+    providers   : [
+      AuthService
     ]
 })
 export class FuseMainModule

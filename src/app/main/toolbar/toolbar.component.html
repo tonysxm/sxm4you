@@ -27,12 +27,20 @@
         </div>
 
         <div class="" fxFlex="0 1 auto" fxLayout="row" fxLayoutAlign="start center">
+          <span *ngIf="authService.isAuthenticated()"> </span>
+          <button class="mat-accent compose-dialog-button mat-button user-button btn-margin"
+                  *ngIf="!authService.isAuthenticated()"
+                  (click)="login()">
+            Log In
+          </button>
+        </div>
 
-            <button mat-button [matMenuTriggerFor]="userMenu"
+        <div class="" fxFlex="0 1 auto" fxLayout="row" fxLayoutAlign="start center">
+          <button *ngIf="authService.isAuthenticated()" mat-button [matMenuTriggerFor]="userMenu"
                     class="user-button">
                 <div fxLayout="row" fxLayoutAlign="center center">
                     <img class="avatar" src="assets/images/avatars/profile.jpg">
-                    <span class="username mr-12" fxHide fxShow.gt-sm>John Doe - Food Center</span>
+                    <span class="username mr-12" fxHide fxShow.gt-sm>{{authService.userProfile?.name}} - Food Center</span>
                     <mat-icon class="s-16" fxHide.xs>keyboard_arrow_down</mat-icon>
                 </div>
             </button>
@@ -48,7 +56,7 @@
                     <span>Inbox</span>
                 </button>
 
-                <button mat-menu-item class="">
+                <button mat-menu-item class="" (click)="authService.logout()">
                     <mat-icon>exit_to_app</mat-icon>
                     <span>Logout</span>
                 </button>
@@ -80,7 +88,7 @@
 
             <div class="toolbar-separator" fxHide fxShow.gt-xs></div>
 
-            <button mat-icon-button style="width: 100px"
+            <button *ngIf="authService.isAuthenticated()" mat-icon-button style="width: 100px"
                     class="mat-icon-button quick-panel-toggle-button"
                     fuseMatSidenavToggler="quick-panel"
                     aria-label="Toggle quick panel">

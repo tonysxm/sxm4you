@@ -23,6 +23,7 @@ import {StoreService} from "../../../services/store.service";
 import { CheckoutComponent } from './checkout/checkout.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ProductService} from "../../../services/product.service";
+import {CallbackComponent} from "../../../callback/callback.component";
 
 const routes = [
   {
@@ -44,6 +45,10 @@ const routes = [
   {
     path      : 'checkout/:id',
     component : CheckoutComponent
+  },
+  {
+    path      : 'callback',
+    component : CallbackComponent
   }
 ];
 
